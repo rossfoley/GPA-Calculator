@@ -17,10 +17,8 @@ end
 
 group :development, :test do
   gem "rspec-rails"
-  gem "mocha"
   gem "factory_girl_rails"
   gem "capistrano"
-  gem "rspec-rails-mocha", "~> 0.3.0"
   gem "sqlite3-ruby", :require => "sqlite3"
   gem "libnotify"
   gem "guard-rspec"
