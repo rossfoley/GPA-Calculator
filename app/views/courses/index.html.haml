@@ -1,0 +1,27 @@
+%h1 Listing courses
+
+%table
+  %tr
+    %th User
+    %th Name
+    %th Grade
+    %th Level
+    %th Credit
+    %th
+    %th
+    %th
+
+  - @courses.each do |course|
+    %tr
+      %td= course.user_id
+      %td= course.name
+      %td= course.grade
+      %td= course.level
+      %td= course.credit
+      %td= link_to 'Show', course
+      %td= link_to 'Edit', edit_course_path(course)
+      %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Course', new_course_path

@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b User:
+  = @course.user_id
+%p
+  %b Name:
+  = @course.name
+%p
+  %b Grade:
+  = @course.grade
+%p
+  %b Level:
+  = @course.level
+%p
+  %b Credit:
+  = @course.credit
+
+= link_to 'Edit', edit_course_path(@course)
+\|
+= link_to 'Back', courses_path

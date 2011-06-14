@@ -1,0 +1,13 @@
+!!!
+%html{:lang => "en"}
+  %head
+    %title 
+      = h(yield(:title) || "GPA Calculator")
+    = csrf_meta_tag
+    = stylesheet_link_tag "application"
+  %body
+    #container
+      %h1 Welcome to GPA Calculator
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
+      = yield
