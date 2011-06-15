@@ -3,7 +3,7 @@ GpaCalculator::Application.routes.draw do
 
   get "home/index"
 
-  devise_for :users
+  devise_for :users, :path => "accounts"
 
   resources :users do
     resources :courses

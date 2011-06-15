@@ -93,3 +93,18 @@ a {
   font-size: 12px;
   list-style: disc;
 }
+
+/* line 83, sass/application.scss */
+nav.login {
+  float: right;
+}
+/* line 85, sass/application.scss */
+nav.login ul {
+  list-style: none;
+  margin: 0 0 2em;
+  padding: 0;
+}
+/* line 89, sass/application.scss */
+nav.login ul li {
+  display: inline;
+}

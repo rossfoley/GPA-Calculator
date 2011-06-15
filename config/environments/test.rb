@@ -32,4 +32,5 @@ GpaCalculator::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  config.stretches = Rails.env.test? ? 1 : 10
 end
