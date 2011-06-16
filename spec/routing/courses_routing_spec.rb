@@ -2,6 +2,9 @@ require "spec_helper"
 
 describe CoursesController do
   describe "routing" do
+    before(:each) do
+      pending
+    end
 
     it "routes to #index" do
       get("/courses").should route_to("courses#index")

@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem "rails", "3.0.7"
+gem "rails", "3.0.9"
 gem "jquery-rails"
 gem "rake", "~>0.8.7"
 gem "haml"
@@ -20,6 +20,5 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "capistrano"
   gem "sqlite3-ruby", :require => "sqlite3"
-  gem "libnotify"
   gem "guard-rspec"
 end

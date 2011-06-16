@@ -11,7 +11,7 @@ describe "courses/new.html.haml" do
     ).as_new_record)
   end
 
-  it "renders new course form" do
+  pending "renders new course form" do
     render
 
     # Run the generator again with the --webrat flag if you want to use webrat matchers

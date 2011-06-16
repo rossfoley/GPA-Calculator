@@ -2,6 +2,7 @@ require 'spec_helper'
 
 describe "courses/edit.html.haml" do
   before(:each) do
+    pending
     @course = assign(:course, stub_model(Course,
       :user_id => 1,
       :name => "MyString",

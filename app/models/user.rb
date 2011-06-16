@@ -13,10 +13,27 @@ class User < ActiveRecord::Base
   validates_associated :courses
 
   def gpa
-    totalGpaValue = 0.0
-    courses.each{|c| totalGpaValue += (c.gpa_value * c.credit)}
-    totalCredits = 0.0
-    courses.each{|c| totalCredits += c.credit}
+    totalGpaValue, totalCredits = 0.0, 0.0
+    self.courses.each do |c|
+      totalGpaValue += (c.gpa_value * c.credit)
+      totalCredits += c.credit
+    end
     totalGpaValue/totalCredits
+  end
+
+  def honor_status
+    totalHonorValue, totalCredits = 0.0, 0.0
+    self.courses.each do |c|
+      totalHonorValue += (c.honor_value * c.credit)
+      totalCredits += c.credit
+    end
+    honor = (totalHonorValue/totalCredits).round
+    case honor
+    when 12,11,10 then "High Honors"
+    when 9 then "Honors"
+    when 8 then "Honorable Mention"
+    else
+      "None"
+    end
   end
 end
