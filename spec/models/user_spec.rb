@@ -47,4 +47,9 @@ describe User do
     end
     user.gpa.should == 4.8
   end
+  it "should calculate Honor Role status" do
+    user = Factory(:user)
+    user.courses = [Factory(:course, :grade => "A-"), Factory(:course, :grade => "B")]
+    user.honor_status.should == "Honors"
+  end
 end
