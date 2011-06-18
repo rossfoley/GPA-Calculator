@@ -16,6 +16,6 @@
   %b Credit:
   = @course.credit
 
-= link_to 'Edit', edit_course_path(@course)
+= link_to 'Edit', edit_user_course_path(current_user, @course)
 \|
-= link_to 'Back', courses_path
+= link_to 'Back', user_courses_path

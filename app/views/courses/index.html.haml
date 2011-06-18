@@ -1,8 +1,12 @@
 %h1 Listing courses
-
+%h2 
+  GPA
+  = @user.gpa
+%h2 
+  Honor Status
+  = @user.honor_status
 %table
   %tr
-    %th User
     %th Name
     %th Grade
     %th Level
@@ -11,17 +15,16 @@
     %th
     %th
 
-  - @courses.each do |course|
+  - @user.courses.each do |course|
     %tr
-      %td= course.user_id
       %td= course.name
       %td= course.grade
       %td= course.level
       %td= course.credit
-      %td= link_to 'Show', course
-      %td= link_to 'Edit', edit_course_path(course)
-      %td= link_to 'Destroy', course, :confirm => 'Are you sure?', :method => :delete
+      %td= link_to 'Show', [@user, course]
+      %td= link_to 'Edit', edit_user_course_path(@user, course)
+      %td= link_to 'Destroy', [@user, course], :confirm => 'Are you sure?', :method => :delete
 
 %br
 
-= link_to 'New Course', new_course_path
+= link_to 'New Course', new_user_course_path

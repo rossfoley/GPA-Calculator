@@ -26,7 +26,7 @@ class Course < ActiveRecord::Base
     when "D+"  then 3
     when "D"   then 2
     when "D-"  then 1
-    when "F "  then 0
+    when "F"  then 0
     end
   end
 
@@ -46,7 +46,7 @@ class Course < ActiveRecord::Base
     when "D+"  then 2.3
     when "D"   then 2.0
     when "D-"  then 1.7
-    when "F "  then 0.0
+    when "F"  then 0.0
     end
   end
   def l1_value(gr)
@@ -63,7 +63,7 @@ class Course < ActiveRecord::Base
     when "D+"  then 1.8
     when "D"   then 1.5
     when "D-"  then 1.2
-    when "F "  then 0.0
+    when "F"  then 0.0
     end
   end
   def l2_value(gr)
@@ -80,7 +80,7 @@ class Course < ActiveRecord::Base
     when "D+"  then 1.3
     when "D"   then 1.0
     when "D-"  then 0.7
-    when "F "  then 0.0
+    when "F"  then 0.0
     end
   end
 end
