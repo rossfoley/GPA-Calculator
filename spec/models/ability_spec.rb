@@ -8,8 +8,13 @@ describe "Ability" do
     end
 
     it "can only create a user" do
-      @ability.should be_able_to(:create, :users)
-      @ability.should_not be_able_to(:update, :users)
+      @ability.should be_able_to(:create, User)
+      @ability.should_not be_able_to(:update, User)
+    end
+
+    it "can access home and info pages" do
+      @ability.should be_able_to(:access, :home)
+      @ability.should be_able_to(:access, :info)
     end
   end
 
@@ -25,9 +30,24 @@ describe "Ability" do
       @ability.should_not be_able_to(:update, User.new)
     end
 
-    it "can update their courses" do
+    it "can CRUD their courses" do
+      @ability.should be_able_to(:create, Course)
+      @ability.should be_able_to(:read, @course)
       @ability.should be_able_to(:update, @course)
+      @ability.should be_able_to(:destroy, @course)
+      @ability.should_not be_able_to(:read, Course.new)
       @ability.should_not be_able_to(:update, Course.new)
+      @ability.should_not be_able_to(:destroy, Course.new)
+    end
+  end
+  describe "as admin" do
+    before(:each) do
+      @user = Factory(:user, :role => "admin")
+      @ability = Ability.new(@user)
+    end
+
+    it "can manage all" do
+      @ability.should be_able_to(:manage, :all)
     end
   end
 end
