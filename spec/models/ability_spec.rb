@@ -25,9 +25,13 @@ describe "Ability" do
       @ability = Ability.new(@user)
     end
     
-    it "can update their own account" do
+    it "can read, update, and destroy their own account" do
+      @ability.should be_able_to(:read, @user)
       @ability.should be_able_to(:update, @user)
+      @ability.should be_able_to(:destroy, @user)
+      @ability.should_not be_able_to(:destroy, User.new)
       @ability.should_not be_able_to(:update, User.new)
+      @ability.should_not be_able_to(:destroy, User.new)
     end
 
     it "can CRUD their courses" do
