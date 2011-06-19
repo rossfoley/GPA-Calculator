@@ -1,0 +1,132 @@
+/* line 1, sass/main.scss */
+body, select, input, textarea {
+  color: #444;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 14px;
+}
+
+/* line 6, sass/main.scss */
+body {
+  background-color: #4B7399;
+}
+
+/* line 10, sass/main.scss */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+/* line 12, sass/main.scss */
+a img {
+  border: none;
+}
+
+/* line 16, sass/main.scss */
+a {
+  color: #0000FF;
+}
+
+/* line 20, sass/main.scss */
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+/* line 26, sass/main.scss */
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+/* line 35, sass/main.scss */
+#flash_notice, #flash_error {
+  padding: 5px 8px;
+  margin: 10px 0;
+}
+
+/* line 40, sass/main.scss */
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+/* line 45, sass/main.scss */
+#flash_error {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+/* line 50, sass/main.scss */
+.fieldWithErrors {
+  display: inline;
+}
+
+/* line 54, sass/main.scss */
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+/* line 63, sass/main.scss */
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+/* line 73, sass/main.scss */
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 8px;
+}
+
+/* line 79, sass/main.scss */
+#errorExplanation ul {
+  margin: 2px 24px;
+}
+
+/* line 83, sass/main.scss */
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: disc;
+}
+
+/* line 88, sass/main.scss */
+nav.login {
+  float: right;
+}
+/* line 90, sass/main.scss */
+nav.login ul {
+  list-style: none;
+  margin: 0 0 2em;
+  padding: 0;
+}
+/* line 94, sass/main.scss */
+nav.login ul li {
+  display: inline;
+}
+
+/* line 99, sass/main.scss */
+h1#logo {
+  font-size: 26px;
+  float: left;
+  width: 50%;
+}
+
+/* line 104, sass/main.scss */
+td, th {
+  padding: 5px;
+}

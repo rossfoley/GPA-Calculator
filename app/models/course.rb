@@ -4,6 +4,10 @@ class Course < ActiveRecord::Base
   validates_numericality_of :credit, :less_than_or_equal_to => 1.000
   validates_inclusion_of :level, :in => %w(AP L1 L2)
 
+  LEVELS = %w(AP L1 L2)
+  GRADES = %w(A+ A A- B+ B B- C+ C C- D+ D D- F)
+  CREDITS = [1.0, 0.5, 0.375, 0.25]
+
   def gpa_value
     case self.level
     when "AP" then ap_value(self.grade)

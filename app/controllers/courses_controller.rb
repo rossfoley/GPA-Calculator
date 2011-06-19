@@ -3,6 +3,7 @@ class CoursesController < ApplicationController
   before_filter :set_user
   load_and_authorize_resource :user
   load_and_authorize_resource :course, :through => :user
+
   def index
     respond_to do |format|
       format.html
@@ -30,7 +31,7 @@ class CoursesController < ApplicationController
   def create
     respond_to do |format|
       if @course.save
-        format.html { redirect_to([@user, @course], :notice => 'Course was successfully created.') }
+        format.html { redirect_to(user_courses_url, :notice => 'Course was successfully created.') }
         format.xml  { render :xml => [@user, @course], :status => :created, :location => @course }
       else
         format.html { render :action => "new" }
@@ -42,7 +43,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update_attributes(params[:course])
-        format.html { redirect_to([@user, @course], :notice => 'Course was successfully updated.') }
+        format.html { redirect_to(user_courses_url, :notice => 'Course was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -10,12 +10,10 @@
     = f.text_field :name
   .field
     = f.label :grade
-    = f.text_field :grade
-  .field
+    = f.select :grade, Course::GRADES
     = f.label :level
-    = f.text_field :level
-  .field
+    = f.select :level, Course::LEVELS
     = f.label :credit
-    = f.text_field :credit
+    = f.select :credit, Course::CREDITS
   .actions
     = f.submit 'Save'
