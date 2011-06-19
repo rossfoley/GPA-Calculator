@@ -13,6 +13,7 @@
         %h1#logo GPA Calculator
         %nav.login
           %ul
+            = link_to("My Courses", user_courses_path(current_user)) if user_signed_in?
             = render "devise/menu/registration_items"
             = render "devise/menu/login_items"
       .clear
@@ -20,4 +21,5 @@
         - flash.each do |name, msg|
           = content_tag :div, msg, :id => "flash_#{name}"
         = yield
+      %hr
       %footer Copyright &copy; 2011 Ross Foley.  All Rights Reserved.

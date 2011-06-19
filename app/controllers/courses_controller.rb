@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_user
   load_and_authorize_resource :user
   load_and_authorize_resource :course, :through => :user
 
@@ -59,11 +58,5 @@ class CoursesController < ApplicationController
       format.html { redirect_to(user_courses_url) }
       format.xml  { head :ok }
     end
-  end
-
-  private
-
-  def set_user
-    @user = User.find(params[:user_id])
   end
 end
