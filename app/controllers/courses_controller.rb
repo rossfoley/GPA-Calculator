@@ -4,8 +4,6 @@ class CoursesController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :course, :through => :user
   def index
-    # @courses = @user.courses
-
     respond_to do |format|
       format.html
       format.xml  { render :xml => @courses }
@@ -13,8 +11,6 @@ class CoursesController < ApplicationController
   end
 
   def show
-    # @course = @user.courses.find(params[:id])
-
     respond_to do |format|
       format.html 
       format.xml  { render :xml => @course }
@@ -22,8 +18,6 @@ class CoursesController < ApplicationController
   end
 
   def new
-    # @course = @user.courses.new
-
     respond_to do |format|
       format.html
       format.xml  { render :xml => [@user, @course] }
@@ -31,12 +25,9 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    # @course = @user.courses.find(params[:id])
   end
 
   def create
-    # @course = @user.courses.new(params[:course])
-
     respond_to do |format|
       if @course.save
         format.html { redirect_to([@user, @course], :notice => 'Course was successfully created.') }
@@ -49,8 +40,6 @@ class CoursesController < ApplicationController
   end
 
   def update
-    # @course = @user.courses.find(params[:id])
-
     respond_to do |format|
       if @course.update_attributes(params[:course])
         format.html { redirect_to([@user, @course], :notice => 'Course was successfully updated.') }
@@ -63,8 +52,7 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    # @course = @user.courses.find(params[:id])
-    # @course.destroy
+    @course.destroy
 
     respond_to do |format|
       format.html { redirect_to(user_courses_url) }

@@ -1,7 +1,7 @@
 %h1 Listing courses
 %h2 
   GPA
-  = @user.gpa
+  = @user.gpa.round(3)
 %h2 
   Honor Status
   = @user.honor_status
