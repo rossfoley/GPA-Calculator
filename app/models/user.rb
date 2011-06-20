@@ -13,6 +13,7 @@ class User < ActiveRecord::Base
   validates_associated :courses
 
   def gpa
+    return 0.0 if self.courses.empty?
     totalGpaValue, totalCredits = 0.0, 0.0
     self.courses.each do |c|
       totalGpaValue += (c.gpa_value * c.credit)
