@@ -1,3 +1,4 @@
+require 'bundler/capistrano'
 set :application, "gpa.rossfoley.com"
 role :app, application
 role :web, application
