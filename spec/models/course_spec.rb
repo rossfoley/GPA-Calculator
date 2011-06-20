@@ -40,6 +40,10 @@ describe Course do
       course.gpa_value.should == value
     end
   end
+  it "should compute a standard 4.0 based GPA value" do
+    course = Factory(:course, :grade => "A")
+    course.standard_gpa_value.should == 4
+  end
   it "should compute an honor value" do
     course = Factory(:course, :grade => "B-")
     course.honor_value.should == 7
