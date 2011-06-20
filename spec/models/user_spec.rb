@@ -47,17 +47,22 @@ describe User do
     end
     user.gpa.should == 4.8
   end
-  it "should return 0.0 if there are no courses" do
-    user = User.new
-    user.gpa.should == 0.0
+  it "should calculate a standard GPA" do
+    user = Factory(:user)
+    user.courses = 5.times.collect do
+      Factory(:course, :credit => 1.000, :grade => "A+") 
+    end
+    user.standard_gpa.should == 4.0
   end
   it "should calculate Honor Role status" do
     user = Factory(:user)
     user.courses = [Factory(:course, :grade => "A-"), Factory(:course, :grade => "B")]
     user.honor_status.should == "Honors"
   end
-  it "should return an Honor Status of None if there are no courses" do
+  it "should return default values if there are no courses" do
     user = User.new
+    user.gpa.should == 0.0
+    user.standard_gpa.should == 0.0
     user.honor_status.should == "None"
   end
 end

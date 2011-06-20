@@ -22,6 +22,16 @@ class User < ActiveRecord::Base
     totalGpaValue/totalCredits
   end
 
+  def standard_gpa
+    return 0.0 if self.courses.empty?
+    totalGpaValue, totalCredits = 0.0, 0.0
+    self.courses.each do |c|
+      totalGpaValue += (c.standard_gpa_value * c.credit)
+      totalCredits += c.credit
+    end
+    totalGpaValue/totalCredits
+  end
+
   def honor_status
     return "None" if self.courses.empty?
     totalHonorValue, totalCredits = 0.0, 0.0
