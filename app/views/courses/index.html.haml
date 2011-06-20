@@ -1,20 +1,26 @@
-%h1 Course Summary for #{@user.email}
 #user_status
-  GPA: #{@user.gpa.round(3)}   |   Honor Status: #{@user.honor_status}
-%table
-  %tr
-    %th Name
-    %th Grade
-    %th Level
-    %th Credit
-    %th
-    %th= link_to 'New Course', new_user_course_path
-
-  - @user.courses.each do |course|
+  %h2 Course Summary
+  %dl
+    %dt GPA:
+    %dd #{@user.gpa.round(3)}
+    %dt Honor Status:
+    %dl #{@user.honor_status}
+#courses_table
+  %table
     %tr
-      %td= course.name
-      %td= course.grade
-      %td= course.level
-      %td= course.credit
-      %td= link_to 'Edit', edit_user_course_path(@user, course)
-      %td= link_to 'Destroy', [@user, course], :confirm => 'Are you sure?', :method => :delete
+      %th Name
+      %th Grade
+      %th Level
+      %th Credit
+      %th
+      %th= link_to 'New Course', new_user_course_path
+
+    - @user.courses.each do |course|
+      %tr
+        %td= course.name
+        %td= course.grade
+        %td= course.level
+        %td= course.credit
+        %td= link_to 'Edit', edit_user_course_path(@user, course)
+        %td= link_to 'Destroy', [@user, course], :confirm => 'Are you sure?', :method => :delete
+.clear

@@ -58,31 +58,27 @@ a {
   padding-bottom: 12px;
   margin-bottom: 20px;
   background-color: #f0f0f0;
-}
-
-#errorExplanation h2 {
-  text-align: left;
-  font-weight: bold;
-  padding: 5px 5px 5px 15px;
-  font-size: 12px;
-  margin: 0;
-  background-color: #c00;
-  color: #fff;
-}
-
-#errorExplanation p {
-  color: #333;
-  margin-bottom: 0;
-  padding: 8px;
-}
-
-#errorExplanation ul {
-  margin: 2px 24px;
-}
-
-#errorExplanation ul li {
-  font-size: 12px;
-  list-style: disc;
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: 0;
+    background-color: #c00;
+    color: #fff;
+  }
+  p {
+    color: #333;
+    margin-bottom: 0;
+    padding: 8px;
+  }
+  ul {
+    margin: 2px 24px;
+    li {
+      font-size: 12px;
+      list-style: disc;
+    }
+  }
 }
 
 nav.login {
@@ -96,11 +92,21 @@ nav.login {
     }
   }
 }
+
 h1#logo {
   font-size: 26px;
   float: left;
   width: 50%;
 }
+
 td, th {
   padding: 5px;
+  text-align: left;
+  float: none;
+}
+
+#user_status, #courses_table {
+  float: left;
+  width: 50%;
+  height: auto;
 }
