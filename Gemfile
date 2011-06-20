@@ -10,7 +10,7 @@ gem "devise"
 gem "cancan"
 gem "rails3-generators"
 gem "haml-rails"
-gem "mysql2", "0.2.11"
+gem "mysql2"
 
 group :development, :test do
   gem "rspec-rails"

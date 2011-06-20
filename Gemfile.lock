@@ -146,7 +146,7 @@ DEPENDENCIES
   haml
   haml-rails
   jquery-rails
-  mysql2 (= 0.2.11)
+  mysql2
   rails (= 3.0.9)
   rails3-generators
   rake (~> 0.8.7)
