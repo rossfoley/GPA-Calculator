@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   end
 
   def honor_status
+    return "None" if self.courses.empty?
     totalHonorValue, totalCredits = 0.0, 0.0
     self.courses.each do |c|
       totalHonorValue += (c.honor_value * c.credit)

@@ -56,4 +56,8 @@ describe User do
     user.courses = [Factory(:course, :grade => "A-"), Factory(:course, :grade => "B")]
     user.honor_status.should == "Honors"
   end
+  it "should return an Honor Status of None if there are no courses" do
+    user = User.new
+    user.honor_status.should == "None"
+  end
 end
