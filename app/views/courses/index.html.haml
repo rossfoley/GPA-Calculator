@@ -1,8 +1,11 @@
 #user_status
   %h2 Course Summary
   %dl
-    %dt GPA:
+    %dt Lewis Mills GPA:
     %dd #{@user.gpa.round(3)}
+    %br
+    %dt Standardized GPA:
+    %dd #{@user.standard_gpa.round(3)}
     %br
     %dt Honor Status:
     %dd #{@user.honor_status}
