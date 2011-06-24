@@ -417,13 +417,21 @@ h3 {
 #courses_table th {
   font-size: 16px;
 }
+/* line 132, sass/main.scss */
+#courses_table .even {
+  background: white;
+}
+/* line 135, sass/main.scss */
+#courses_table .odd {
+  background: #DEDEDE;
+}
 
-/* line 134, sass/main.scss */
+/* line 140, sass/main.scss */
 #new_course {
   margin-top: 5px;
 }
 
-/* line 139, sass/main.scss */
+/* line 145, sass/main.scss */
 form p {
   margin: 5px 0;
 }
