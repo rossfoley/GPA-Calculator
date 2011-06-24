@@ -5,34 +5,34 @@ body, select, input, textarea {
   font-size: 14px;
 }
 
-/* line 6, sass/main.scss */
+/* line 7, sass/main.scss */
 body {
   background-color: #4B7399;
 }
 
-/* line 10, sass/main.scss */
+/* line 11, sass/main.scss */
 h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 }
 
-/* line 12, sass/main.scss */
+/* line 13, sass/main.scss */
 a img {
   border: none;
 }
 
-/* line 16, sass/main.scss */
+/* line 17, sass/main.scss */
 a {
   color: #0000FF;
 }
 
-/* line 20, sass/main.scss */
+/* line 21, sass/main.scss */
 .clear {
   clear: both;
   height: 0;
   overflow: hidden;
 }
 
-/* line 26, sass/main.scss */
+/* line 27, sass/main.scss */
 #container {
   width: 75%;
   margin: 0 auto;
@@ -42,30 +42,30 @@ a {
   margin-top: 20px;
 }
 
-/* line 35, sass/main.scss */
+/* line 36, sass/main.scss */
 #flash_notice, #flash_error {
   padding: 5px 8px;
   margin: 10px 0;
 }
 
-/* line 40, sass/main.scss */
+/* line 41, sass/main.scss */
 #flash_notice {
   background-color: #CFC;
   border: solid 1px #6C6;
 }
 
-/* line 45, sass/main.scss */
+/* line 46, sass/main.scss */
 #flash_error {
   background-color: #FCC;
   border: solid 1px #C66;
 }
 
-/* line 50, sass/main.scss */
+/* line 51, sass/main.scss */
 .fieldWithErrors {
   display: inline;
 }
 
-/* line 54, sass/main.scss */
+/* line 55, sass/main.scss */
 #errorExplanation {
   width: 400px;
   border: 2px solid #CF0000;
@@ -74,7 +74,7 @@ a {
   margin-bottom: 20px;
   background-color: #f0f0f0;
 }
-/* line 61, sass/main.scss */
+/* line 62, sass/main.scss */
 #errorExplanation h2 {
   text-align: left;
   font-weight: bold;
@@ -84,69 +84,74 @@ a {
   background-color: #c00;
   color: #fff;
 }
-/* line 70, sass/main.scss */
+/* line 71, sass/main.scss */
 #errorExplanation p {
   color: #333;
   margin-bottom: 0;
   padding: 8px;
 }
-/* line 75, sass/main.scss */
+/* line 76, sass/main.scss */
 #errorExplanation ul {
   margin: 2px 24px;
 }
-/* line 77, sass/main.scss */
+/* line 78, sass/main.scss */
 #errorExplanation ul li {
   font-size: 12px;
   list-style: disc;
 }
 
-/* line 84, sass/main.scss */
+/* line 85, sass/main.scss */
 nav.login {
   float: right;
 }
-/* line 86, sass/main.scss */
+/* line 87, sass/main.scss */
 nav.login ul {
   list-style: none;
   margin: 0 0 2em;
   padding: 0;
 }
-/* line 90, sass/main.scss */
+/* line 91, sass/main.scss */
 nav.login ul li {
   display: inline;
 }
 
-/* line 96, sass/main.scss */
+/* line 97, sass/main.scss */
 h1#logo {
   font-size: 30px;
   float: left;
   width: 50%;
 }
 
-/* line 102, sass/main.scss */
+/* line 103, sass/main.scss */
 td, th {
   padding: 5px;
   text-align: left;
   float: none;
 }
 
-/* line 108, sass/main.scss */
+/* line 109, sass/main.scss */
 #user_status, #courses_table {
   float: left;
   width: 50%;
   height: auto;
 }
 
-/* line 114, sass/main.scss */
+/* line 115, sass/main.scss */
 h2 {
   font-size: 24px;
 }
 
-/* line 119, sass/main.scss */
+/* line 120, sass/main.scss */
 #user_status dt, #user_status dd {
   font-size: 18px;
   display: inline;
 }
-/* line 123, sass/main.scss */
+/* line 124, sass/main.scss */
 #user_status dt {
   font-weight: bold;
+}
+
+/* line 130, sass/main.scss */
+form p {
+  margin: 5px 0;
 }

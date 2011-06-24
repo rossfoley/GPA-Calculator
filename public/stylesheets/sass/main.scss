@@ -3,6 +3,7 @@ body, select, input, textarea {
   font-family: Verdana, Helvetica, Arial;
   font-size: 14px;
 }
+
 body {
   background-color: #4B7399;
 }
@@ -122,5 +123,11 @@ h2 {
   }
   dt {
     font-weight: bold;
+  }
+}
+
+form {
+  p {
+    margin: 5px 0;
   }
 }

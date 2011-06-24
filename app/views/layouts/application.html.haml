@@ -12,10 +12,7 @@
       %header
         %h1#logo GPA Calculator
         %nav.login
-          %ul
-            = link_to("My Courses", user_courses_path(current_user)) if user_signed_in?
-            = render "devise/menu/registration_items"
-            = render "devise/menu/login_items"
+          = render "devise/menu/login_items"
       .clear
       #content
         - flash.each do |name, msg|

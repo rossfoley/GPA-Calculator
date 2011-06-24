@@ -1,4 +1,8 @@
--if user_signed_in?
-  %li= link_to('Logout', destroy_user_session_path)
-- else 
-  %li= link_to('Login', new_user_session_path)
+%ul
+  -if user_signed_in?
+    %li= link_to("My Courses", user_courses_path(current_user))
+    %li= link_to('Edit Account Info', edit_user_registration_path)
+    %li= link_to('Logout', destroy_user_session_path)
+  - else 
+    %li= link_to('Register', new_user_registration_path)
+    %li= link_to('Login', new_user_session_path)
