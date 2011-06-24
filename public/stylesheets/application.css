@@ -403,17 +403,22 @@ h2 {
   font-size: 24px;
 }
 
-/* line 120, sass/main.scss */
+/* line 119, sass/main.scss */
+h3 {
+  font-size: 20px;
+}
+
+/* line 124, sass/main.scss */
 #user_status dt, #user_status dd {
   font-size: 18px;
   display: inline;
 }
-/* line 124, sass/main.scss */
+/* line 128, sass/main.scss */
 #user_status dt {
   font-weight: bold;
 }
 
-/* line 130, sass/main.scss */
+/* line 134, sass/main.scss */
 form p {
   margin: 5px 0;
 }
