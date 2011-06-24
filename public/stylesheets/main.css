@@ -129,34 +129,39 @@ td, th {
   float: none;
 }
 
-/* line 109, sass/main.scss */
+/* line 108, sass/main.scss */
+h2 {
+  font-size: 24px;
+}
+
+/* line 112, sass/main.scss */
+h3 {
+  font-size: 20px;
+}
+
+/* line 116, sass/main.scss */
 #user_status, #courses_table {
   float: left;
   width: 50%;
   height: auto;
 }
 
-/* line 115, sass/main.scss */
-h2 {
-  font-size: 24px;
-}
-
-/* line 119, sass/main.scss */
-h3 {
-  font-size: 20px;
-}
-
-/* line 124, sass/main.scss */
-#user_status dt, #user_status dd {
+/* line 123, sass/main.scss */
+#user_status td {
   font-size: 18px;
-  display: inline;
 }
-/* line 128, sass/main.scss */
-#user_status dt {
-  font-weight: bold;
+
+/* line 129, sass/main.scss */
+#courses_table th {
+  font-size: 16px;
 }
 
 /* line 134, sass/main.scss */
+#new_course {
+  margin-top: 5px;
+}
+
+/* line 139, sass/main.scss */
 form p {
   margin: 5px 0;
 }

@@ -1,14 +1,15 @@
 #user_status
   %h2 Course Summary
-  %dl
-    %dt Lewis Mills GPA:
-    %dd #{@user.gpa.round(3)}
-    %br
-    %dt Standardized GPA:
-    %dd #{@user.standard_gpa.round(3)}
-    %br
-    %dt Honor Status:
-    %dd #{@user.honor_status}
+  %table
+    %tr
+      %td Lewis Mills GPA:
+      %td #{@user.gpa.round(3)}
+    %tr
+      %td Standardized GPA:
+      %td #{@user.standard_gpa.round(3)}
+    %tr
+      %td Honor Status:
+      %td #{@user.honor_status}
 #courses_table
   %table
     %tr
@@ -17,7 +18,7 @@
       %th Level
       %th Credit
       %th
-      %th= link_to 'New Course', new_user_course_path
+      %th
 
     - @user.courses.each do |course|
       %tr
@@ -27,4 +28,6 @@
         %td= course.credit
         %td= link_to 'Edit', edit_user_course_path(@user, course)
         %td= link_to 'Destroy', [@user, course], :confirm => 'Are you sure?', :method => :delete
+    %tr
+      %td= link_to 'New Course', new_user_course_path, :id => "new_course"
 .clear
