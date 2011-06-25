@@ -144,6 +144,13 @@ h3 {
 
 form {
   p {
-    margin: 5px 0;
+    margin: 10px 0;
+  }
+  input[type="text"], input[type="email"], input[type="password"] {
+    background-color: #fff;
+    border: solid 1px #aaa;
+    padding: 5px 8px;
+    font-size: 1.2em;
+    @include border-radius(6px);
   }
 }

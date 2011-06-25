@@ -3,11 +3,12 @@
   %head
     %meta{:charset => "utf-8"}
     %title 
-      = h(yield(:title) || "GPA Calculator")
+      GPA Calculator
+      -# = h(yield(:title) || "GPA Calculator")
     = csrf_meta_tag
     = stylesheet_link_tag "application"
     = javascript_include_tag :defaults
-  %body
+  %body{:class => page_class}
     #container
       %header
         %h1#logo GPA Calculator

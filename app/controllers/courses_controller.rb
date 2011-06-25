@@ -1,62 +1,41 @@
 class CoursesController < ApplicationController
+  respond_to :html, :xml, :json
   before_filter :authenticate_user!
   load_and_authorize_resource :user
   load_and_authorize_resource :course, :through => :user
 
   def index
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => @courses }
-    end
+    respond_with @user.courses
   end
 
   def show
-    respond_to do |format|
-      format.html 
-      format.xml  { render :xml => @course }
-    end
+    respond_with @course
   end
 
   def new
-    respond_to do |format|
-      format.html
-      format.xml  { render :xml => [@user, @course] }
-    end
+    respond_with @course
   end
 
   def edit
   end
 
   def create
-    respond_to do |format|
-      if @course.save
-        format.html { redirect_to(user_courses_url, :notice => 'Course was successfully created.') }
-        format.xml  { render :xml => [@user, @course], :status => :created, :location => @course }
-      else
-        format.html { render :action => "new" }
-        format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
-      end
+    if @course.save
+      flash[:notice] = "Successfully created course."
     end
+    respond_with @course, :location => user_courses_url
   end
 
   def update
-    respond_to do |format|
-      if @course.update_attributes(params[:course])
-        format.html { redirect_to(user_courses_url, :notice => 'Course was successfully updated.') }
-        format.xml  { head :ok }
-      else
-        format.html { render :action => "edit" }
-        format.xml  { render :xml => @course.errors, :status => :unprocessable_entity }
-      end
+    if @course.update_attributes(params[:course])
+      flash[:notice] = "Successfully updated course."
     end
+    respond_with @course, :location => user_courses_url
   end
 
   def destroy
     @course.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(user_courses_url) }
-      format.xml  { head :ok }
-    end
+    flash[:notice] = "Successfully destroyed course."
+    respond_with @course, :location => user_courses_url
   end
 end
