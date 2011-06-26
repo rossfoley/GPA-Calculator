@@ -26,61 +26,12 @@ a {
 }
 
 #container {
-  width: 960px;
+  width: 878px;
   margin: 0 auto;
   background-color: #FFF;
   padding: 20px 40px;
   border: solid 1px black;
   margin-top: 20px;
-}
-
-#flash_notice, #flash_error {
-  padding: 5px 8px;
-  margin: 10px 0;
-}
-
-#flash_notice {
-  background-color: #CFC;
-  border: solid 1px #6C6;
-}
-
-#flash_error {
-  background-color: #FCC;
-  border: solid 1px #C66;
-}
-
-.fieldWithErrors {
-  display: inline;
-}
-
-#errorExplanation {
-  width: 400px;
-  border: 2px solid #CF0000;
-  padding: 0px;
-  padding-bottom: 12px;
-  margin-bottom: 20px;
-  background-color: #f0f0f0;
-  h2 {
-    text-align: left;
-    font-weight: bold;
-    padding: 5px 5px 5px 15px;
-    font-size: 12px;
-    margin: 0;
-    background-color: #c00;
-    color: #fff;
-  }
-  p {
-    color: #333;
-    margin-bottom: 0;
-    padding: 8px;
-  }
-  ul {
-    margin: 2px 24px;
-    li {
-      font-size: 12px;
-      list-style: disc;
-    }
-  }
 }
 
 nav.login {
@@ -114,33 +65,6 @@ h3 {
   font-size: 20px;
 }
 
-#user_status, #courses_table {
-  float: left;
-  width: 50%;
-  height: auto;
-}
-
-#user_status {
-  td {
-    font-size: 18px;
-  }
-}
-
-#courses_table {
-  th {
-    font-size: 16px;
-  }
-  .even {
-    background: white;
-  }
-  .odd {
-    background: #DEDEDE;
-  }
-}
-
-#new_course {
-  margin-top: 5px;
-}
 
 form {
   p {
@@ -149,8 +73,47 @@ form {
   input[type="text"], input[type="email"], input[type="password"] {
     background-color: #fff;
     border: solid 1px #aaa;
-    padding: 5px 8px;
-    font-size: 1.2em;
+    padding: 3px 5px;
+    font-size: 1.1em;
     @include border-radius(6px);
+  }
+}
+.courses {
+  #user_status, #courses_table {
+    float: left;
+    width: 50%;
+    height: auto;
+  }
+  #user_status {
+    td {
+      font-size: 18px;
+    }
+  }
+  #courses_table {
+    th {
+      font-size: 16px;
+    }
+    .even {
+      background: white;
+    }
+    .odd {
+      background: #DEDEDE;
+    }
+  }
+  #new_course {
+    margin-top: 5px;
+  }
+  .field {
+    margin: 10px 0;
+    select {
+      margin-right: 10px;
+    }
+  }
+}
+
+.home {
+  #login, #registration {
+    width: 50%;
+    float: left;
   }
 }

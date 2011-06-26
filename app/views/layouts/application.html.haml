@@ -3,8 +3,7 @@
   %head
     %meta{:charset => "utf-8"}
     %title 
-      GPA Calculator
-      -# = h(yield(:title) || "GPA Calculator")
+      = h(yield(:title) || "GPA Calculator")
     = csrf_meta_tag
     = stylesheet_link_tag "application"
     = javascript_include_tag :defaults
@@ -17,7 +16,7 @@
       .clear
       #content
         - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_#{name}"
+          = content_tag :div, msg, :id => "flash_#{name}", :class => "flash"
         = yield
       %hr
       %footer Copyright &copy; 2011 Ross Foley.  All Rights Reserved.

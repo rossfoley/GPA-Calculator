@@ -1,7 +1,5 @@
-%h1 Editing course
+- title "Editing #{@course.name}"
 
 = render 'form'
 
-= link_to 'Show', [current_user, @course]
-\|
 = link_to 'Back', user_courses_path
