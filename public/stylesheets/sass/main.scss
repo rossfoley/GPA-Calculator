@@ -64,18 +64,39 @@ h2 {
 h3 {
   font-size: 20px;
 }
-
-
 form {
   p {
     margin: 10px 0;
   }
   input[type="text"], input[type="email"], input[type="password"] {
-    background-color: #fff;
     border: solid 1px #aaa;
-    padding: 3px 5px;
-    font-size: 1.1em;
+    padding: 5px 8px;
+    font-size: 1.2em;
     @include border-radius(6px);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 10%, from(#999), to(#fff));
+    background-image: -moz-linear-gradient(0% 10% 90deg, #fff, #999);
+    background-color: #fff;
+    &:focus {
+      @include box-shadow(0 0 12px rgba(51, 204, 255, 0.9));
+    }
+  }
+  input[type="submit"] {
+    padding: 8px 15px;
+    font-weight: bold;
+    line-height: 1;
+    color: #444;
+    border: solid 1px #aaa;
+    background-color: #fff;
+    @include border-radius(23px);
+    text-shadow: 0 1px 1px rgba(255, 255, 255, 0.85);
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#fff), to(#bbb));
+    background-image: -moz-linear-gradient(0% 10% 90deg, #fff, #bbb);
+    &:focus, &:hover {
+      @include box-shadow(0 0 12px rgba(51, 204, 255, 0.9));
+    }
+  }
+  input:focus, textarea:focus {
+    outline: none;
   }
 }
 .courses {
@@ -107,6 +128,7 @@ form {
     margin: 10px 0;
     select {
       margin-right: 10px;
+      padding: 2px 5px;
     }
   }
 }
@@ -117,3 +139,27 @@ form {
     float: left;
   }
 }
+
+// @-webkit-keyframes pulse {
+//   0% {
+//     -webkit-box-shadow: 0 0 12px rgba(51,204,255,.2);
+//   }
+//   50% {
+//     -webkit-box-shadow: 0 0 12px rgba(51,204,255,.9);
+//   }
+//   100% {
+//     -webkit-box-shadow: 0 0 12px rgba(51,204,255,.2);
+//   }
+// }
+// 
+// @-webkit-keyframes pulse-error {
+//   0% {
+//     -webkit-box-shadow: 0 0 12px rgba(204,0,0,.1);
+//   }
+//   50% {
+//     -webkit-box-shadow: 0 0 12px rgba(204,0,0,.5);
+//   }
+//   100% {
+//     -webkit-box-shadow: 0 0 12px rgba(204,0,0,.1);
+//   }
+// }

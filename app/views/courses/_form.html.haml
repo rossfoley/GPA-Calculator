@@ -1,6 +1,6 @@
 = form_for [current_user, @course] do |f|
   -if @course.errors.any?
-    #flash_error
+    #flash_error.flash
       %h3= "There were errors in the form:"
       %ul
         - @course.errors.full_messages.each do |msg|
