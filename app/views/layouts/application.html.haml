@@ -10,7 +10,7 @@
   %body{:class => page_class}
     #container
       %header
-        %h1#logo GPA Calculator
+        %h1#logo= link_to("GPA Calculator", root_path)
         %nav.login
           = render "devise/menu/login_items"
       .clear

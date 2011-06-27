@@ -19,6 +19,16 @@ a {
   color: #0000FF;
 }
 
+p {
+  margin-bottom: 10px;
+  display: block;
+}
+
+h1#logo a {
+  color: #000;
+  text-decoration: none;
+}
+
 .clear {
   clear: both;
   height: 0;

@@ -1,6 +1,7 @@
 - title("GPA Calculator | Home")
 #intro
-  GPA Calculator makes it easy to calculate your GPA and Honor Roll Status.  After creating an account, you can enter in the information for all of your school courses.  You will then be able to see your Lewis Mills GPA, your Standardized GPA, and your Honor Roll Status.  That way, you will always be up-to-date with all of your school related statistics, allowing you to make sure that you get the best GPA possible.
+  %p
+    Welcome to GPA Calculator!  To get started, login or sign up an account below.
 - if !user_signed_in?
   %hr
   #login= render :partial => "devise/shared/login"

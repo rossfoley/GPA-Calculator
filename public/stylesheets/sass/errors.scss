@@ -1,3 +1,4 @@
+@import "compass";
 .flash {
   padding: 5px 8px;
   margin: 10px 0;
@@ -18,8 +19,14 @@
   border: solid 1px #C66;
 }
 
-.fieldWithErrors {
+.field_with_errors {
   display: inline;
+  input {
+    @include box-shadow(0 0 12px rgba(204,0,0,.5));
+  }
+  label {
+    color: red;
+  }
 }
 
 #errorExplanation {
@@ -51,4 +58,3 @@
     }
   }
 }
-
