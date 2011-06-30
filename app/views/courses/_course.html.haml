@@ -1,0 +1,8 @@
+%tr{:class => cycle("even", "odd")}
+  %td= course.name
+  %td= course.grade
+  %td= course.level
+  %td= course.credit
+  %span.edit_destroy
+    %td= link_to 'Edit', edit_user_course_path(course.user, course)
+    %td= link_to 'Destroy', [course.user, course], :confirm => 'Are you sure?', :method => :delete

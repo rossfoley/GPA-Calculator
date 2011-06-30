@@ -20,16 +20,7 @@
       %th Credit
       %th
       %th
-
-    - @user.courses.each do |course|
-      %tr{:class => cycle("even", "odd")}
-        %td= course.name
-        %td= course.grade
-        %td= course.level
-        %td= course.credit
-        %span.edit_destroy
-          %td= link_to 'Edit', edit_user_course_path(@user, course)
-          %td= link_to 'Destroy', [@user, course], :confirm => 'Are you sure?', :method => :delete
+    = render @user.courses
     %tr
       %td= link_to 'New Course', new_user_course_path, :id => "new_course"
 .clear
