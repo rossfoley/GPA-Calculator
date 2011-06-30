@@ -5,7 +5,7 @@ GpaCalculator::Application.routes.draw do
   get "info/faq", :as => :faq
   get "info/about", :as => :about
 
-  devise_for :users, :path => "accounts"
+  devise_for :users
 
   resources :users do
     resources :courses
