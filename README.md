@@ -1,5 +1,5 @@
 #GPA Calculator
-**Created by Ross Foley**
+_Created by Ross Foley_
 
 ##Introduction
 This application was created to solve the problem that Lewis Mills doesn't provide an easy way to calculate your GPA.  While the formula to do so is available in your student handbook, there has never been an automated way to calculate your GPA.
