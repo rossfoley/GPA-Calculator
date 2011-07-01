@@ -121,6 +121,19 @@ form {
     }
   }
   #courses_table {
+    table {
+      width: 410px;
+      overflow: hidden;
+      td#name {
+        width: 150px;
+        input {
+          width: 145px;
+        }
+      }
+      td#grade, td#level, td#credit {
+        width: 60px;
+      }
+    }
     th {
       font-size: 16px;
     }

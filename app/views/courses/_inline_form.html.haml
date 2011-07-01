@@ -1,0 +1,12 @@
+%tr
+  = form_for [course.user, course] do |f|
+    %td#name
+      = f.text_field :name
+    %td#grade
+      = f.select :grade, Course::GRADES
+    %td#level
+      = f.select :level, Course::LEVELS
+    %td#credit
+      = f.select :credit, Course::CREDITS
+    %td#save
+      = f.submit 'Save'

@@ -1,5 +1,5 @@
 class CoursesController < ApplicationController
-  respond_to :html, :xml, :json
+  respond_to :html, :xml, :json, :js
   before_filter :authenticate_user!
   load_and_authorize_resource :user
   load_and_authorize_resource :course, :through => :user
