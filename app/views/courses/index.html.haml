@@ -14,14 +14,12 @@
 #courses_table
   %table
     %tr
-      %th#name Name
-      %th#grade Grade
-      %th#level Level
-      %th#credit Credit
+      %th Name
+      %th Grade
+      %th Level
+      %th Credit
       %th
       %th
     = render @user.courses
-    = render "inline_form", :course => @user.courses.first
-    %tr
-      %td= link_to 'New Course', new_user_course_path, :id => "new_course"
+  = link_to 'New Course', new_user_course_path, :id => "new_course"
 .clear

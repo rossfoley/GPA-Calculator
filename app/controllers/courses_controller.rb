@@ -21,21 +21,22 @@ class CoursesController < ApplicationController
 
   def create
     if @course.save
-      flash[:notice] = "Successfully created course."
+      flash[:notice] = "Successfully created #{@course.name}."
     end
     respond_with @course, :location => user_courses_url
   end
 
   def update
     if @course.update_attributes(params[:course])
-      flash[:notice] = "Successfully updated course."
+      flash[:notice] = "Successfully updated #{@course.name}."
     end
     respond_with @course, :location => user_courses_url
   end
 
   def destroy
+    course_name = @course.name
     @course.destroy
-    flash[:notice] = "Successfully destroyed course."
+    flash[:notice] = "Successfully deleted #{course_name}."
     respond_with @course, :location => user_courses_url
   end
 end

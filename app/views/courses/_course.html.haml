@@ -3,5 +3,5 @@
   %td#grade= course.grade
   %td#level= course.level
   %td#credit= course.credit
-  %td= link_to 'Edit', edit_user_course_path(course.user, course)
-  %td= link_to 'Destroy', [course.user, course], :confirm => 'Are you sure?', :method => :delete
+  %td= link_to "Edit", edit_user_course_path(course.user, course)
+  %td= link_to "Delete", [course.user, course], :confirm => "Are you sure you want to delete #{course.name}?", :method => :delete
