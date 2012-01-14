@@ -1,6 +1,5 @@
 %h2 Sign up
 = form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
-  -# #flash_error.flash= devise_error_messages!
   -if resource.errors.any?
     #flash_error.flash
       %h3= "There were errors in the form:"

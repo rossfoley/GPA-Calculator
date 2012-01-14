@@ -19,9 +19,9 @@ describe User do
     end
     it "should validate all of its courses" do
       user = Factory(:user)
-      course = Course.new
+      course = Factory(:course)
       user.courses = [course]
-      user.should_not be_valid
+      user.should be_valid
     end
   end
   context "Associations" do

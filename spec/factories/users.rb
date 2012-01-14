@@ -1,6 +1,8 @@
-Factory.define :user do |f|
-  f.sequence(:email) { |n| "email#{n}@email.com" }
-  f.password "password"
-  f.password_confirmation {|u| u.password }
-  f.role "member"
+FactoryGirl.define do
+  factory :user do
+    sequence(:email) { |n| "email#{n}@email.com" }
+    password "password"
+    password_confirmation {|u| u.password }
+    role "member"
+  end
 end
