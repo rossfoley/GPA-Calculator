@@ -25,4 +25,5 @@ group :assets do
   gem "coffee-rails"
   gem "uglifier"
   gem "compass"
+  gem "twitter-bootstrap-rails"
 end
