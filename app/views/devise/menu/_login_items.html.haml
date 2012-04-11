@@ -1,10 +1,30 @@
-%ul
-  -if user_signed_in?
-    %li= link_to("My Courses", user_courses_path(current_user))
-    %li= link_to('Edit Account Info', edit_user_registration_path)
-    %li= link_to('Logout', destroy_user_session_path)
-  - else 
-    %li= link_to('Sign Up', new_user_registration_path)
-    %li= link_to('Login', new_user_session_path)
-  %li= link_to("About", about_path)
-  %li= link_to("FAQ", faq_path)
+-# %ul
+-#   -if user_signed_in?
+-#     %li= link_to("My Courses", user_courses_path(current_user))
+-#     %li= link_to('Edit Account Info', edit_user_registration_path)
+-#     %li= link_to('Logout', destroy_user_session_path)
+-#   - else 
+-#     %li= link_to('Sign Up', new_user_registration_path)
+-#     %li= link_to('Login', new_user_session_path)
+-#   %li= link_to("About", about_path)
+-#   %li= link_to("FAQ", faq_path)
+
+.navbar.navbar-fixed-top
+  .navbar-inner
+    .container
+      %a.btn.btn-navbar{data: {toggle: "collapse", target: ".nav-collapse"}}
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      = link_to "GPA Calculator", root_path, class: "brand"
+      .nav-collapse
+        %ul.nav
+          -if user_signed_in?
+            %li= link_to("My Courses", user_courses_path(current_user))
+            %li= link_to('Edit Account Info', edit_user_registration_path)
+            %li= link_to('Logout', destroy_user_session_path)
+          - else 
+            %li= link_to('Sign Up', new_user_registration_path)
+            %li= link_to('Login', new_user_session_path)
+          %li= link_to("About", about_path)
+          %li= link_to("FAQ", faq_path)
