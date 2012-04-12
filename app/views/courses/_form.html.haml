@@ -1,19 +1,18 @@
 = form_for [current_user, @course] do |f|
   -if @course.errors.any?
-    #flash_error.flash
+    #flash_error.flash.alert.alert-error
       %h3= "There were errors in the form:"
       %ul
         - @course.errors.full_messages.each do |msg|
           %li= msg
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :grade
-    = f.select :grade, Course::GRADES
-    = f.label :level
-    = f.select :level, Course::LEVELS
-    = f.label :credit
-    = f.select :credit, Course::CREDITS
-  .actions
-    = f.submit 'Save'
+  = f.label :name
+  = f.text_field :name
+  = f.label :grade
+  = f.select :grade, Course::GRADES
+  = f.label :level
+  = f.select :level, Course::LEVELS
+  = f.label :credit
+  = f.select :credit, Course::CREDITS
+  .form-actions
+    = f.submit "Save", class: "btn btn-primary"
+    = link_to "Cancel", user_courses_path, class: "btn"

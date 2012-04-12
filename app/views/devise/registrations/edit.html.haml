@@ -8,24 +8,16 @@
       %ul
         - resource.errors.full_messages.each do |msg|
           %li= msg
-  %p
-    = f.label :email
-    %br/
-    = f.email_field :email
-  %p
-    = f.label :password
+  = f.label :email
+  = f.email_field :email
+  = f.label :password
+  = f.password_field :password
+  %span.help-inline
     %i (leave blank if you don't want to change it)
-    %br/
-    = f.password_field :password
-  %p
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation
-  %p
-    = f.label :current_password
-    %br/
-    = f.password_field :current_password
-  %p= f.submit "Update"
-%h3 Delete your account
-%p
-  = link_to "Click here to delete your account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete
+  = f.label :password_confirmation
+  = f.password_field :password_confirmation
+  = f.label :current_password
+  = f.password_field :current_password
+  .form-actions
+    = f.submit "Update Your Account", class: "btn btn-primary"
+    = link_to "Delete Your Account", registration_path(resource_name), :confirm => "Are you sure?", :method => :delete, class: "btn btn-danger"

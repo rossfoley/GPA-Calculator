@@ -7,16 +7,15 @@
     = csrf_meta_tag
     = stylesheet_link_tag "application"
     = javascript_include_tag "application"
+    %meta{name: "viewport", content: "width=devise-width, initial-scale=1.0"}
   %body{:class => page_class}
-    #container
-      %header
-        %h1#logo= link_to("GPA Calculator", root_path)
-        %nav.login
-          = render "devise/menu/login_items"
-      .clear
-      #content
-        - flash.each do |name, msg|
-          = content_tag :div, msg, :id => "flash_#{name}", :class => "flash"
-        = yield
+    %header
+      %nav.login
+        = render "devise/menu/login_items"
+    .clear
+    .container#content
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}", :class => "flash alert #{alert_class(name)}"
+      = yield
       %hr
-      %footer Copyright &copy; 2011 Ross Foley.  All Rights Reserved.
+      %footer Copyright &copy; 2012 Ross Foley.  All Rights Reserved.

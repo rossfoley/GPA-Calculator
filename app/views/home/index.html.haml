@@ -1,9 +1,9 @@
 - title("GPA Calculator | Home")
-#intro
-  %p
-    Welcome to GPA Calculator!  To get started, login or sign up for an account below.
+%h1 GPA Calculator
+%p
+  Welcome to GPA Calculator!  To get started, login or sign up for an account below.
 - if !user_signed_in?
   %hr
-  #login= render :partial => "devise/shared/login"
-  #registration= render :partial => "devise/shared/registration"
-  .clear
+  .row
+    #login.span6= render partial: "devise/shared/login"
+    #registration.span6= render partial: "devise/shared/registration"

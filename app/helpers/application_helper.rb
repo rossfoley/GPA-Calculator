@@ -10,4 +10,14 @@ module ApplicationHelper
   def javascript(*args)
     content_for(:head) { javascript_include_tag(*args) }
   end
+  
+  def alert_class(name)
+    if name == "notice"
+      "alert-success"
+    elsif name == "error" or name == "alert"
+      "alert-error"
+    else
+      "alert-info"
+    end
+  end
 end

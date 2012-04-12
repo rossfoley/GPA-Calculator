@@ -1,10 +1,5 @@
 /*
- *
  *= require_self
- *= require "reset"
  *= require "main"
- *= require "errors"
- *= require "helper"
  *= require_tree .
- *
  */

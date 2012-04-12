@@ -1,25 +1,25 @@
 - title "GPA Calculator | Courses"
-#user_status
-  %h2 Course Summary
-  %table
-    %tr
-      %td Lewis Mills GPA:
-      %td #{@user.gpa.round(3)}
-    %tr
-      %td Standardized GPA:
-      %td #{@user.standard_gpa.round(3)}
-    %tr
-      %td Honor Roll Status:
-      %td #{@user.honor_status}
-#courses_table
-  %table
-    %tr
-      %th Name
-      %th Grade
-      %th Level
-      %th Credit
-      %th
-      %th
-    = render @user.courses
-  = link_to 'New Course', new_user_course_path, :id => "new_course"
-.clear
+.row
+  #user_status.span4
+    %h2 Course Summary
+    %table.table
+      %tr
+        %td Lewis Mills GPA:
+        %td #{@user.gpa.round(3)}
+      %tr
+        %td Standardized GPA:
+        %td #{@user.standard_gpa.round(3)}
+      %tr
+        %td Honor Roll Status:
+        %td #{@user.honor_status}
+  #courses_table.span8
+    %h2 Courses
+    %table.table.table-striped
+      %tr
+        %th Name
+        %th Grade
+        %th Level
+        %th Credit
+        %th
+      = render @user.courses
+    = link_to 'New Course', new_user_course_path, id: "new_course", class: "btn btn-primary"
