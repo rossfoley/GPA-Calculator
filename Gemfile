@@ -1,13 +1,15 @@
 source "http://rubygems.org"
 
 gem "rails"
-gem "mysql2"
+gem "pg"
 
 gem "devise"
 gem "cancan"
 
 gem "jquery-rails"
 gem "haml"
+
+gem "rails_12factor", group: :production
 
 group :development, :test do
   gem "haml-rails"
