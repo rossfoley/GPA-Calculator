@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   # Devise generated code
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  attr_accessible :email, :password, :password_confirmation, :remember_me
+  # attr_accessible :email, :password, :password_confirmation, :remember_me
 
   # Has many courses, can't exist by themselves
   has_many :courses, :dependent => :destroy
