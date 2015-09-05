@@ -15,4 +15,5 @@ GpaCalculator::Application.configure do
 
   config.assets.compress = false
   config.assets.debug = true
+  config.eager_load = false
 end
