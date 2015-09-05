@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
-  # Devise generated code
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  # attr_accessible :email, :password, :password_confirmation, :remember_me
 
   # Has many courses, can't exist by themselves
   has_many :courses, :dependent => :destroy
@@ -41,11 +41,11 @@ class User < ActiveRecord::Base
     end
     honor = (totalHonorValue/totalCredits).round
     case honor
-    when 12,11,10 then "High Honors"
-    when 9 then "Honors"
-    when 8 then "Honorable Mention"
-    else
-      "None"
+      when 12,11,10 then "High Honors"
+      when 9 then "Honors"
+      when 8 then "Honorable Mention"
+      else
+        "None"
     end
   end
 end

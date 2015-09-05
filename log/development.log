@@ -1,0 +1,2103 @@
+  [1m[36m (0.8ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL) [0m
+  [1m[35m (0.0ms)[0m  select sqlite_version(*)
+  [1m[36m (0.6ms)[0m  [1mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [1m[35mActiveRecord::SchemaMigration Load (0.1ms)[0m  SELECT "schema_migrations".* FROM "schema_migrations"
+Migrating to DeviseCreateUsers (20150905201134)
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "email" varchar DEFAULT '' NOT NULL, "encrypted_password" varchar DEFAULT '' NOT NULL, "reset_password_token" varchar, "reset_password_sent_at" datetime, "remember_created_at" datetime, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" datetime, "last_sign_in_at" datetime, "current_sign_in_ip" varchar, "last_sign_in_ip" varchar, "role" varchar DEFAULT 'member', "created_at" datetime NOT NULL, "updated_at" datetime NOT NULL) 
+  [1m[36m (0.3ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_email" ON "users" ("email")[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1mCREATE UNIQUE INDEX "index_users_on_reset_password_token" ON "users" ("reset_password_token")[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES (?)  [["version", "20150905201134"]]
+  [1m[36m (0.6ms)[0m  [1mcommit transaction[0m
+Migrating to CreateCourse (20150905201342)
+  [1m[35m (0.1ms)[0m  begin transaction
+DEPRECATION WARNING: `#timestamps` was called without specifying an option for `null`. In Rails 5, this behavior will change to `null: false`. You should manually specify `null: true` to prevent the behavior of your existing migrations from changing. (called from block in change at /Users/rossfoley/code/gpacalculator/db/migrate/20150905201342_create_course.rb:10)
+  [1m[36m (0.2ms)[0m  [1mCREATE TABLE "courses" ("id" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "user_id" integer, "name" varchar, "grade" varchar, "level" varchar, "credit" decimal(4,3), "created_at" datetime, "updated_at" datetime) [0m
+  [1m[35m (0.1ms)[0m  CREATE  INDEX "index_courses_on_user_id" ON "courses" ("user_id")
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20150905201342"]]
+  [1m[35m (0.5ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_courses_on_user_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_courses_on_user_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+
+
+
+Started GET "/" for ::1 at 2015-09-05 13:20:58 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered home/index.html.haml within layouts/application (16.1ms)
+Completed 500 Internal Server Error in 39ms (ActiveRecord: 0.0ms)
+
+ActionView::Template::Error (undefined method `title' for #<#<Class:0x007f9a8b044188>:0x007f9a8b03c938>):
+    1: - title("GPA Calculator | Home")
+    2: %h1 GPA Calculator
+    3: %p
+    4:   Welcome to GPA Calculator!  To get started, login or sign up for an account below.
+  app/views/home/index.html.haml:1:in `_app_views_home_index_html_haml__4466937857297049813_70150866410840'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (44.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (38.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (85.0ms)
+
+
+Started GET "/" for ::1 at 2015-09-05 13:21:32 -0700
+Processing by HomeController#index as HTML
+  Rendered devise/shared/_login.haml (24.7ms)
+  Rendered devise/shared/_registration.haml (2.4ms)
+  Rendered home/index.html.haml within layouts/application (31.8ms)
+Completed 200 OK in 1173ms (Views: 1171.9ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-c1a8821f7eb1b195061d7706930814ecc6bd44db4c68f208da5fe14845fa11ea.css?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-77d963462a71b85aa6c39f0110994006fed4301154d937da52eb3884ff813853.css?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/helper.self-91aab9bbeeaa3fcc7dc57783735d3acd14ec51a9001496660d83b37fb2733d8e.css?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/main.self-a0c85528ca3f78b1df051659fa0cf97c541d00fe13d3490eeb23e39c253b2722.css?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/transition.self-db278e3a8fa6249c16796b113ebd29e11ef4e2cd021618ed84895d524a4511e0.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/alert.self-ebce91ec66c71bcee451ea7da9128fd1bf8faa02c6d22ea04c598423431e4c08.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/modal.self-ab1767545e27c0dbd36971e656ae4927171f673e3d932cdec2cbef39e991952b.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/dropdown.self-8bb9309b6c24a4ba6b94026a049d25b13bdc0553b6fe83255c14a715ba624cc4.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/scrollspy.self-bd0c6724cdc75302fe98dfeff923112b76c1673cf4a0752a7050b7feea15594c.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/tab.self-7e3ee4a243bb416b5f0111a0be08f8547c5d72ba71fe4afe4a4a007f5cb4e10e.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/tooltip.self-d7f9330825307d053f68da11bb9ddc9b070df72deef3d115f2f3d55f66b17457.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/popover.self-cd672ecad3b549e1dbd89bfd044e5812d6fdade56f42d48e3acee0c3f4614526.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/button.self-ceb562de883e04359bb2c06f07bdf6ecf065cc8a5027e2e58857c5e91b0b68e3.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/collapse.self-a87553101c955a01e2e8c81fad69a16582ddbf58fe95d5eb335dde5567af7647.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/carousel.self-5d09995e01b647168888180d40e271f9a6759d68ae7ac029d7026af58813d376.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap/affix.self-14e04bbe71282aa039322ab93e3a3a886ddede5f59a2f365f7c861f697bbeb21.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/twitter/bootstrap.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/bootstrap.self-fdc98dee79ee88255e10cac6caa91338165cb76cf0d263744d8d90011fc2ef8f.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2015-09-05 13:21:33 -0700
+
+
+Started GET "/" for ::1 at 2015-09-05 13:24:28 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered devise/shared/_login.haml (33.5ms)
+  Rendered devise/shared/_registration.haml (3.5ms)
+  Rendered home/index.html.haml within layouts/application (46.5ms)
+Completed 200 OK in 993ms (Views: 983.2ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-54ec61324c7ecd685a9e2c7a3748e619fff4df3d958ff7199e7f465f067941dc.css?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/helper.self-91aab9bbeeaa3fcc7dc57783735d3acd14ec51a9001496660d83b37fb2733d8e.css?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/main.self-a0c85528ca3f78b1df051659fa0cf97c541d00fe13d3490eeb23e39c253b2722.css?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-d9bd36a8aeb9607121f7066121d71aa19a8846a30dfadb6fd4ee3d6b104c5f1b.css?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.self-1f404046c677611b4c53fe8c7fa375d263aee3a2e3ffd10b6de609ce1fbb14ba.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.self-6fd0b0097e1b5d807a9e59c8914e00f1c80d64b6f5f5ad8f5c8f4bd5257d1233.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.self-31563e9d22c6c441c4bd6d53381d89710560a9b96356df8f2413198633d61b2b.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.self-1ed8d6c365f72e9d378331aeb03097eea0bf443bb4e18b4bd551e3a04e1bbc82.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.self-d7e7f43bd32db50108215b2da1b78229443295e36ed5e560901dac95a9aa0b2d.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.self-4372bd57b77c95c5ae140f68af0454eba315e71e9da19cfad68ba59007280645.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.self-14b70f6c51272602f1c58e8b0fd4783c2123d72db8de2b0aa298e7789617130e.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.self-d7bc00218b830918f1d254a9b7a83155f0850728d6eca92ad2cad148136b556c.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.self-ec411ad9c9efa6f321b7d40f49ded5349beeb3d162fa38da764d243b33256cce.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.self-743f780936abb3ae4b4afb385273dd40a091a71f8b869e96427ed340ddc49fb5.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.self-a2a874da9eec4567e474650e78025b2557ca25bfe3c9823bf4f8bfadb8d1b870.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.self-886a9d8ef78798bccff815f846e02a82df9846e3cc3d3383f98705df4e404357.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.self-fc2adbfd50a5e179d9c5978e92781e874d5629a6e86a14352eca21e8f35bd2c7.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/twitter/bootstrap.self-94f59a48294d99f8d9b7632cd5a1742670c7735fe37ec7c555aab939b635fdde.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/bootstrap.self-ff76904e4e6f362fe0bf1138e5a35caea2fb89500029971c584ce7810c01ea1d.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2015-09-05 13:24:29 -0700
+
+
+Started GET "/" for ::1 at 2015-09-05 13:25:47 -0700
+Processing by HomeController#index as HTML
+  Rendered devise/shared/_login.haml (1.5ms)
+  Rendered devise/shared/_registration.haml (6.6ms)
+  Rendered home/index.html.haml within layouts/application (10.6ms)
+Completed 200 OK in 140ms (Views: 138.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-54ec61324c7ecd685a9e2c7a3748e619fff4df3d958ff7199e7f465f067941dc.css?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/main.self-87fc69c926414c582da5904323396e7b0bf17375c06ed5e857b07262dab15593.css?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-d9bd36a8aeb9607121f7066121d71aa19a8846a30dfadb6fd4ee3d6b104c5f1b.css?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/helper.self-91aab9bbeeaa3fcc7dc57783735d3acd14ec51a9001496660d83b37fb2733d8e.css?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.self-1f404046c677611b4c53fe8c7fa375d263aee3a2e3ffd10b6de609ce1fbb14ba.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.self-6fd0b0097e1b5d807a9e59c8914e00f1c80d64b6f5f5ad8f5c8f4bd5257d1233.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.self-31563e9d22c6c441c4bd6d53381d89710560a9b96356df8f2413198633d61b2b.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.self-1ed8d6c365f72e9d378331aeb03097eea0bf443bb4e18b4bd551e3a04e1bbc82.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.self-d7e7f43bd32db50108215b2da1b78229443295e36ed5e560901dac95a9aa0b2d.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.self-14b70f6c51272602f1c58e8b0fd4783c2123d72db8de2b0aa298e7789617130e.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.self-4372bd57b77c95c5ae140f68af0454eba315e71e9da19cfad68ba59007280645.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.self-d7bc00218b830918f1d254a9b7a83155f0850728d6eca92ad2cad148136b556c.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.self-ec411ad9c9efa6f321b7d40f49ded5349beeb3d162fa38da764d243b33256cce.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.self-743f780936abb3ae4b4afb385273dd40a091a71f8b869e96427ed340ddc49fb5.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.self-a2a874da9eec4567e474650e78025b2557ca25bfe3c9823bf4f8bfadb8d1b870.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.self-886a9d8ef78798bccff815f846e02a82df9846e3cc3d3383f98705df4e404357.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.self-fc2adbfd50a5e179d9c5978e92781e874d5629a6e86a14352eca21e8f35bd2c7.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/bootstrap.self-ff76904e4e6f362fe0bf1138e5a35caea2fb89500029971c584ce7810c01ea1d.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap.self-94f59a48294d99f8d9b7632cd5a1742670c7735fe37ec7c555aab939b635fdde.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2015-09-05 13:25:47 -0700
+
+
+Started GET "/" for ::1 at 2015-09-05 13:27:12 -0700
+Processing by HomeController#index as HTML
+  Rendered devise/shared/_login.haml (1.5ms)
+  Rendered devise/shared/_registration.haml (0.9ms)
+  Rendered home/index.html.haml within layouts/application (4.8ms)
+Completed 200 OK in 124ms (Views: 123.4ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-54ec61324c7ecd685a9e2c7a3748e619fff4df3d958ff7199e7f465f067941dc.css?body=1" for ::1 at 2015-09-05 13:27:12 -0700
+
+
+Started GET "/assets/helper.self-91aab9bbeeaa3fcc7dc57783735d3acd14ec51a9001496660d83b37fb2733d8e.css?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-d9bd36a8aeb9607121f7066121d71aa19a8846a30dfadb6fd4ee3d6b104c5f1b.css?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/main.self-87fc69c926414c582da5904323396e7b0bf17375c06ed5e857b07262dab15593.css?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.self-1f404046c677611b4c53fe8c7fa375d263aee3a2e3ffd10b6de609ce1fbb14ba.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.self-6fd0b0097e1b5d807a9e59c8914e00f1c80d64b6f5f5ad8f5c8f4bd5257d1233.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.self-31563e9d22c6c441c4bd6d53381d89710560a9b96356df8f2413198633d61b2b.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.self-1ed8d6c365f72e9d378331aeb03097eea0bf443bb4e18b4bd551e3a04e1bbc82.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.self-d7e7f43bd32db50108215b2da1b78229443295e36ed5e560901dac95a9aa0b2d.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.self-14b70f6c51272602f1c58e8b0fd4783c2123d72db8de2b0aa298e7789617130e.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.self-4372bd57b77c95c5ae140f68af0454eba315e71e9da19cfad68ba59007280645.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.self-d7bc00218b830918f1d254a9b7a83155f0850728d6eca92ad2cad148136b556c.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.self-ec411ad9c9efa6f321b7d40f49ded5349beeb3d162fa38da764d243b33256cce.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.self-743f780936abb3ae4b4afb385273dd40a091a71f8b869e96427ed340ddc49fb5.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.self-a2a874da9eec4567e474650e78025b2557ca25bfe3c9823bf4f8bfadb8d1b870.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.self-886a9d8ef78798bccff815f846e02a82df9846e3cc3d3383f98705df4e404357.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.self-fc2adbfd50a5e179d9c5978e92781e874d5629a6e86a14352eca21e8f35bd2c7.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/twitter/bootstrap.self-94f59a48294d99f8d9b7632cd5a1742670c7735fe37ec7c555aab939b635fdde.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/assets/bootstrap.self-ff76904e4e6f362fe0bf1138e5a35caea2fb89500029971c584ce7810c01ea1d.js?body=1" for ::1 at 2015-09-05 13:27:13 -0700
+
+
+Started GET "/" for ::1 at 2015-09-05 13:27:14 -0700
+Processing by HomeController#index as HTML
+  Rendered devise/shared/_login.haml (1.7ms)
+  Rendered devise/shared/_registration.haml (1.4ms)
+  Rendered home/index.html.haml within layouts/application (5.4ms)
+Completed 200 OK in 76ms (Views: 75.6ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-d9bd36a8aeb9607121f7066121d71aa19a8846a30dfadb6fd4ee3d6b104c5f1b.css?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/main.self-87fc69c926414c582da5904323396e7b0bf17375c06ed5e857b07262dab15593.css?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-54ec61324c7ecd685a9e2c7a3748e619fff4df3d958ff7199e7f465f067941dc.css?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/helper.self-91aab9bbeeaa3fcc7dc57783735d3acd14ec51a9001496660d83b37fb2733d8e.css?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.self-1f404046c677611b4c53fe8c7fa375d263aee3a2e3ffd10b6de609ce1fbb14ba.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.self-6fd0b0097e1b5d807a9e59c8914e00f1c80d64b6f5f5ad8f5c8f4bd5257d1233.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.self-31563e9d22c6c441c4bd6d53381d89710560a9b96356df8f2413198633d61b2b.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.self-d7e7f43bd32db50108215b2da1b78229443295e36ed5e560901dac95a9aa0b2d.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.self-1ed8d6c365f72e9d378331aeb03097eea0bf443bb4e18b4bd551e3a04e1bbc82.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.self-14b70f6c51272602f1c58e8b0fd4783c2123d72db8de2b0aa298e7789617130e.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.self-4372bd57b77c95c5ae140f68af0454eba315e71e9da19cfad68ba59007280645.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.self-d7bc00218b830918f1d254a9b7a83155f0850728d6eca92ad2cad148136b556c.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.self-ec411ad9c9efa6f321b7d40f49ded5349beeb3d162fa38da764d243b33256cce.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.self-743f780936abb3ae4b4afb385273dd40a091a71f8b869e96427ed340ddc49fb5.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.self-a2a874da9eec4567e474650e78025b2557ca25bfe3c9823bf4f8bfadb8d1b870.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.self-886a9d8ef78798bccff815f846e02a82df9846e3cc3d3383f98705df4e404357.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.self-fc2adbfd50a5e179d9c5978e92781e874d5629a6e86a14352eca21e8f35bd2c7.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/twitter/bootstrap.self-94f59a48294d99f8d9b7632cd5a1742670c7735fe37ec7c555aab939b635fdde.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/bootstrap.self-ff76904e4e6f362fe0bf1138e5a35caea2fb89500029971c584ce7810c01ea1d.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2015-09-05 13:27:15 -0700
+
+
+Started GET "/" for ::1 at 2015-09-05 13:27:29 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+  Rendered devise/shared/_login.haml (34.4ms)
+  Rendered devise/shared/_registration.haml (4.3ms)
+  Rendered home/index.html.haml within layouts/application (47.1ms)
+  Rendered devise/menu/_login_items.html.haml (7.1ms)
+Completed 200 OK in 325ms (Views: 314.1ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-d9bd36a8aeb9607121f7066121d71aa19a8846a30dfadb6fd4ee3d6b104c5f1b.css?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-54ec61324c7ecd685a9e2c7a3748e619fff4df3d958ff7199e7f465f067941dc.css?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/main.self-87fc69c926414c582da5904323396e7b0bf17375c06ed5e857b07262dab15593.css?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/helper.self-91aab9bbeeaa3fcc7dc57783735d3acd14ec51a9001496660d83b37fb2733d8e.css?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.self-1f404046c677611b4c53fe8c7fa375d263aee3a2e3ffd10b6de609ce1fbb14ba.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.self-6fd0b0097e1b5d807a9e59c8914e00f1c80d64b6f5f5ad8f5c8f4bd5257d1233.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.self-31563e9d22c6c441c4bd6d53381d89710560a9b96356df8f2413198633d61b2b.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.self-1ed8d6c365f72e9d378331aeb03097eea0bf443bb4e18b4bd551e3a04e1bbc82.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.self-14b70f6c51272602f1c58e8b0fd4783c2123d72db8de2b0aa298e7789617130e.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.self-4372bd57b77c95c5ae140f68af0454eba315e71e9da19cfad68ba59007280645.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.self-d7e7f43bd32db50108215b2da1b78229443295e36ed5e560901dac95a9aa0b2d.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.self-d7bc00218b830918f1d254a9b7a83155f0850728d6eca92ad2cad148136b556c.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.self-ec411ad9c9efa6f321b7d40f49ded5349beeb3d162fa38da764d243b33256cce.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.self-743f780936abb3ae4b4afb385273dd40a091a71f8b869e96427ed340ddc49fb5.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.self-a2a874da9eec4567e474650e78025b2557ca25bfe3c9823bf4f8bfadb8d1b870.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.self-886a9d8ef78798bccff815f846e02a82df9846e3cc3d3383f98705df4e404357.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap.self-94f59a48294d99f8d9b7632cd5a1742670c7735fe37ec7c555aab939b635fdde.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.self-fc2adbfd50a5e179d9c5978e92781e874d5629a6e86a14352eca21e8f35bd2c7.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/bootstrap.self-ff76904e4e6f362fe0bf1138e5a35caea2fb89500029971c584ce7810c01ea1d.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2015-09-05 13:27:30 -0700
+
+
+Started POST "/users" for ::1 at 2015-09-05 13:27:46 -0700
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"i7XU5LA+RLjpp2o/B3OZFWAqwi4MHa8k8d4gy4BrWyUf6bPv0pisNtNfp2TuQNRclvkAB1X10nIQQfzCrR2j1Q==", "user"=>{"email"=>"ross3141@gmail.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mUser Exists (0.4ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'ross3141@gmail.com' LIMIT 1[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "ross3141@gmail.com"], ["encrypted_password", "$2a$10$gDsC7t/xlz50Z1iTInVQzu1ts4ZajGF1cfP1SFrHohPwGUJxRHAYS"], ["created_at", "2015-09-05 20:27:47.147036"], ["updated_at", "2015-09-05 20:27:47.147036"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.8ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2015-09-05 20:27:47.155500"], ["current_sign_in_at", "2015-09-05 20:27:47.155500"], ["last_sign_in_ip", "::1"], ["current_sign_in_ip", "::1"], ["sign_in_count", 1], ["updated_at", "2015-09-05 20:27:47.156565"], ["id", 1]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/
+Completed 302 Found in 177ms (ActiveRecord: 5.5ms)
+
+
+Started GET "/" for ::1 at 2015-09-05 13:27:47 -0700
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to 
+Completed 500 Internal Server Error in 2ms (ActiveRecord: 0.2ms)
+
+NoMethodError (undefined method `stringify_keys' for #<ActionDispatch::Flash::FlashHash:0x007fe1bb6245b8>):
+  app/controllers/home_controller.rb:3:in `index'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.6ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (45.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (40.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (88.0ms)
+
+
+Started GET "/" for ::1 at 2015-09-05 13:29:32 -0700
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to 
+Completed 500 Internal Server Error in 7ms (ActiveRecord: 0.4ms)
+
+NoMethodError (undefined method `stringify_keys' for #<ActionDispatch::Flash::FlashHash:0x007fe1bd90aeb0>):
+  app/controllers/home_controller.rb:4:in `index'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (35.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (77.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-05 13:29:47 -0700
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:29:47 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.2ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered courses/index.html.haml within layouts/application (6.1ms)
+  Rendered devise/menu/_login_items.html.haml (0.6ms)
+Completed 200 OK in 103ms (Views: 89.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/twitter-bootstrap-static/bootstrap.self-54ec61324c7ecd685a9e2c7a3748e619fff4df3d958ff7199e7f465f067941dc.css?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/twitter-bootstrap-static/fontawesome.self-d9bd36a8aeb9607121f7066121d71aa19a8846a30dfadb6fd4ee3d6b104c5f1b.css?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/bootstrap_and_overrides.self-2cb3834583dfbaf0a39c7139750bf963e05d79cbe811126997e013400be5d8dc.css?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/application.self-e80e8f2318043e8af94dddc2adad5a4f09739a8ebb323b3ab31cd71d45fd9113.css?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/main.self-87fc69c926414c582da5904323396e7b0bf17375c06ed5e857b07262dab15593.css?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/helper.self-91aab9bbeeaa3fcc7dc57783735d3acd14ec51a9001496660d83b37fb2733d8e.css?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/jquery_ujs.self-d456baa54c1fa6be2ec3711f0a72ddf7a5b2f34a6b4f515f33767d6207b7d4b3.js?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/jquery.self-a714331225dda820228db323939889f149aec0127aeb06255646b616ba1ca419.js?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/turbolinks.self-c37727e9bd6b2735da5c311aa83fead54ed0be6cc8bd9a65309e9c5abe2cbfff.js?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-transition.self-1f404046c677611b4c53fe8c7fa375d263aee3a2e3ffd10b6de609ce1fbb14ba.js?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-alert.self-6fd0b0097e1b5d807a9e59c8914e00f1c80d64b6f5f5ad8f5c8f4bd5257d1233.js?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-modal.self-31563e9d22c6c441c4bd6d53381d89710560a9b96356df8f2413198633d61b2b.js?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-dropdown.self-1ed8d6c365f72e9d378331aeb03097eea0bf443bb4e18b4bd551e3a04e1bbc82.js?body=1" for ::1 at 2015-09-05 13:29:47 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-scrollspy.self-d7e7f43bd32db50108215b2da1b78229443295e36ed5e560901dac95a9aa0b2d.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tab.self-14b70f6c51272602f1c58e8b0fd4783c2123d72db8de2b0aa298e7789617130e.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-tooltip.self-4372bd57b77c95c5ae140f68af0454eba315e71e9da19cfad68ba59007280645.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-popover.self-d7bc00218b830918f1d254a9b7a83155f0850728d6eca92ad2cad148136b556c.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-button.self-ec411ad9c9efa6f321b7d40f49ded5349beeb3d162fa38da764d243b33256cce.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-collapse.self-743f780936abb3ae4b4afb385273dd40a091a71f8b869e96427ed340ddc49fb5.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-carousel.self-a2a874da9eec4567e474650e78025b2557ca25bfe3c9823bf4f8bfadb8d1b870.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-typeahead.self-886a9d8ef78798bccff815f846e02a82df9846e3cc3d3383f98705df4e404357.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap/bootstrap-affix.self-fc2adbfd50a5e179d9c5978e92781e874d5629a6e86a14352eca21e8f35bd2c7.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/twitter/bootstrap.self-94f59a48294d99f8d9b7632cd5a1742670c7735fe37ec7c555aab939b635fdde.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/bootstrap.self-ff76904e4e6f362fe0bf1138e5a35caea2fb89500029971c584ce7810c01ea1d.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2015-09-05 13:29:48 -0700
+
+
+Started GET "/users/1/courses/new" for ::1 at 2015-09-05 13:29:56 -0700
+Processing by CoursesController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered courses/_form.html.haml (5.3ms)
+  Rendered courses/new.html.haml within layouts/application (7.3ms)
+  Rendered devise/menu/_login_items.html.haml (0.4ms)
+Completed 200 OK in 100ms (Views: 86.9ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:30:05 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"uXNMDx1YZvReRR64AVo+oQQBA57PMmantHI5hnGIe0QtLysEf/6OemS90+PoaXPo8tLBt5baG/FV7eWPXP6DtA==", "course"=>{"name"=>"AP Physics C", "grade"=>"A+", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 9ms (ActiveRecord: 0.2ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.4) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.4) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:564:in `init_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:281:in `initialize'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/reflection.rb:131:in `build_association'
+  activerecord (4.2.4) lib/active_record/associations/association.rb:250:in `build_record'
+  activerecord (4.2.4) lib/active_record/associations/collection_association.rb:146:in `build'
+  activerecord (4.2.4) lib/active_record/associations/collection_proxy.rb:259:in `build'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:85:in `build_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:66:in `load_resource_instance'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:32:in `load_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:25:in `load_and_authorize_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:10:in `block in add_before_filter'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `instance_exec'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `block in make_lambda'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (45.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (34.5ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (76.3ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:32:34 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KZ2q5s+RSyhhTyp8lTR6MY4UU3VBbrz/afDA8m3cc5S9wc3trTejplu35yd8Bzd4eMeRXBiGwamIbxz7QKqLZA==", "course"=>{"name"=>"AP Physics C", "grade"=>"A+", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 20ms (ActiveRecord: 0.8ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.4) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.4) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:564:in `init_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:281:in `initialize'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/reflection.rb:131:in `build_association'
+  activerecord (4.2.4) lib/active_record/associations/association.rb:250:in `build_record'
+  activerecord (4.2.4) lib/active_record/associations/collection_association.rb:146:in `build'
+  activerecord (4.2.4) lib/active_record/associations/collection_proxy.rb:259:in `build'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:85:in `build_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:66:in `load_resource_instance'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:32:in `load_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:25:in `load_and_authorize_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:10:in `block in add_before_filter'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `instance_exec'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `block in make_lambda'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.6ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (43.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (34.6ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (76.1ms)
+
+
+Started GET "/users/1/courses/new" for ::1 at 2015-09-05 13:32:44 -0700
+Processing by CoursesController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered courses/_form.html.haml (2.6ms)
+  Rendered courses/new.html.haml within layouts/application (3.7ms)
+  Rendered devise/menu/_login_items.html.haml (0.6ms)
+Completed 200 OK in 106ms (Views: 97.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:32:51 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KLAFJlRJvA76r5ORbmoPMY7YPML3DGXHnEV1RpxZic287GItNu9UgMBXXsqHWUJ4eAv+667kGJF92qlPsS9xPQ==", "course"=>{"name"=>"AP Class", "grade"=>"A+", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.2ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.4) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.4) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:564:in `init_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:281:in `initialize'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/reflection.rb:131:in `build_association'
+  activerecord (4.2.4) lib/active_record/associations/association.rb:250:in `build_record'
+  activerecord (4.2.4) lib/active_record/associations/collection_association.rb:146:in `build'
+  activerecord (4.2.4) lib/active_record/associations/collection_proxy.rb:259:in `build'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:85:in `build_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:66:in `load_resource_instance'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:32:in `load_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:25:in `load_and_authorize_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:10:in `block in add_before_filter'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `instance_exec'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `block in make_lambda'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (34.5ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (75.8ms)
+
+
+Started PUT "/users/1/console/repl_sessions/4bb33018ef44cc521bdcb502ba375158" for ::1 at 2015-09-05 13:33:10 -0700
+
+
+Started PUT "/users/1/console/repl_sessions/4bb33018ef44cc521bdcb502ba375158" for ::1 at 2015-09-05 13:33:16 -0700
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:34:17 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"KLAFJlRJvA76r5ORbmoPMY7YPML3DGXHnEV1RpxZic287GItNu9UgMBXXsqHWUJ4eAv+667kGJF92qlPsS9xPQ==", "course"=>{"name"=>"AP Class", "grade"=>"A+", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 21ms (ActiveRecord: 0.8ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.4) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.4) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:564:in `init_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:281:in `initialize'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/reflection.rb:131:in `build_association'
+  activerecord (4.2.4) lib/active_record/associations/association.rb:250:in `build_record'
+  activerecord (4.2.4) lib/active_record/associations/collection_association.rb:146:in `build'
+  activerecord (4.2.4) lib/active_record/associations/collection_proxy.rb:259:in `build'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:85:in `build_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:66:in `load_resource_instance'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:32:in `load_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:25:in `load_and_authorize_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:10:in `block in add_before_filter'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `instance_exec'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `block in make_lambda'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.1ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (34.5ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (75.9ms)
+
+
+Started GET "/users/1/courses/new" for ::1 at 2015-09-05 13:34:32 -0700
+Processing by CoursesController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered courses/_form.html.haml (2.3ms)
+  Rendered courses/new.html.haml within layouts/application (3.6ms)
+  Rendered devise/menu/_login_items.html.haml (0.5ms)
+Completed 200 OK in 109ms (Views: 89.4ms | ActiveRecord: 0.8ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:34:37 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"gik34w8CrXd4rVEaWq5p4lts8WLr+JsrJJpOwycbE28WdVDobaRF+UJVnEGznSSrrb8zS7IQ5n3FBZLKCm3rnw==", "course"=>{"name"=>"AP Class", "grade"=>"A+", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 8ms (ActiveRecord: 0.2ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.4) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.4) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:564:in `init_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:281:in `initialize'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/reflection.rb:131:in `build_association'
+  activerecord (4.2.4) lib/active_record/associations/association.rb:250:in `build_record'
+  activerecord (4.2.4) lib/active_record/associations/collection_association.rb:146:in `build'
+  activerecord (4.2.4) lib/active_record/associations/collection_proxy.rb:259:in `build'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:85:in `build_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:66:in `load_resource_instance'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:32:in `load_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:25:in `load_and_authorize_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:10:in `block in add_before_filter'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `instance_exec'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `block in make_lambda'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (41.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (33.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.1ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (73.7ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:34:42 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered courses/index.html.haml within layouts/application (4.2ms)
+  Rendered devise/menu/_login_items.html.haml (0.4ms)
+Completed 200 OK in 105ms (Views: 95.1ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:35:31 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered courses/index.html.haml within layouts/application (4.4ms)
+  Rendered devise/menu/_login_items.html.haml (0.6ms)
+Completed 200 OK in 156ms (Views: 134.2ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/users/1/courses/new" for ::1 at 2015-09-05 13:35:33 -0700
+Processing by CoursesController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered courses/_form.html.haml (13.2ms)
+  Rendered courses/new.html.haml within layouts/application (14.5ms)
+  Rendered devise/menu/_login_items.html.haml (0.5ms)
+Completed 200 OK in 102ms (Views: 90.0ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:35:39 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"IzY/oVHvjamVAq6Vr62Ccyz4LM7ctzOoUMqAeDRMzc63aliqM0llJ6/6Y85Gns862ivu54VfTv6xVVxxGTo1Pg==", "course"=>{"name"=>"AP Physics C", "grade"=>"A+", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+Completed 500 Internal Server Error in 10ms (ActiveRecord: 0.3ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  activemodel (4.2.4) lib/active_model/forbidden_attributes_protection.rb:21:in `sanitize_for_mass_assignment'
+  activerecord (4.2.4) lib/active_record/attribute_assignment.rb:33:in `assign_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:564:in `init_attributes'
+  activerecord (4.2.4) lib/active_record/core.rb:281:in `initialize'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/inheritance.rb:61:in `new'
+  activerecord (4.2.4) lib/active_record/reflection.rb:131:in `build_association'
+  activerecord (4.2.4) lib/active_record/associations/association.rb:250:in `build_record'
+  activerecord (4.2.4) lib/active_record/associations/collection_association.rb:146:in `build'
+  activerecord (4.2.4) lib/active_record/associations/collection_proxy.rb:259:in `build'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:85:in `build_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:66:in `load_resource_instance'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:32:in `load_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:25:in `load_and_authorize_resource'
+  cancan (1.6.10) lib/cancan/controller_resource.rb:10:in `block in add_before_filter'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `instance_exec'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:448:in `block in make_lambda'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:164:in `block in halting'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `each'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:504:in `call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:92:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_process_action_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/abstract_controller/callbacks.rb:19:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/rescue.rb:29:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:32:in `block in process_action'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `block in instrument'
+  activesupport (4.2.4) lib/active_support/notifications/instrumenter.rb:20:in `instrument'
+  activesupport (4.2.4) lib/active_support/notifications.rb:164:in `instrument'
+  actionpack (4.2.4) lib/action_controller/metal/instrumentation.rb:30:in `process_action'
+  actionpack (4.2.4) lib/action_controller/metal/params_wrapper.rb:250:in `process_action'
+  activerecord (4.2.4) lib/active_record/railties/controller_runtime.rb:18:in `process_action'
+  actionpack (4.2.4) lib/abstract_controller/base.rb:137:in `process'
+  actionview (4.2.4) lib/action_view/rendering.rb:30:in `process'
+  actionpack (4.2.4) lib/action_controller/metal.rb:196:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal/rack_delegation.rb:13:in `dispatch'
+  actionpack (4.2.4) lib/action_controller/metal.rb:237:in `block in action'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `call'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:76:in `dispatch'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:45:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:38:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (42.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (35.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (77.9ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:39:01 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.3ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.3ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.2ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered collection (0.0ms)
+  Rendered courses/index.html.haml within layouts/application (21.6ms)
+  Rendered devise/menu/_login_items.html.haml (2.6ms)
+Completed 200 OK in 304ms (Views: 246.6ms | ActiveRecord: 1.5ms)
+
+
+Started GET "/users/1/courses/new" for ::1 at 2015-09-05 13:39:03 -0700
+Processing by CoursesController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered courses/_form.html.haml (16.7ms)
+  Rendered courses/new.html.haml within layouts/application (18.5ms)
+  Rendered devise/menu/_login_items.html.haml (0.5ms)
+Completed 200 OK in 127ms (Views: 111.6ms | ActiveRecord: 0.3ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:39:08 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"SgxLKOoH4oA6vE57A954nl1hcNRHV4mwAJyLfcERPGXeUCwjiKEKDgBEgyDq7TXXq7Ky/R6/9ObhA1d07GfElQ==", "course"=>{"name"=>"AP Physics C", "grade"=>"A+", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (1.0ms)[0m  [1mINSERT INTO "courses" ("name", "grade", "level", "credit", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "AP Physics C"], ["grade", "A+"], ["level", "AP"], ["credit", 1.0], ["user_id", 1], ["created_at", "2015-09-05 20:39:08.953749"], ["updated_at", "2015-09-05 20:39:08.953749"]]
+  [1m[35m (0.6ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 21ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:39:08 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCourse Load (0.2ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?  [["user_id", 1]]
+  Rendered courses/_course.html.haml (2.3ms)
+  Rendered courses/index.html.haml within layouts/application (6.7ms)
+  Rendered devise/menu/_login_items.html.haml (0.7ms)
+Completed 200 OK in 125ms (Views: 112.9ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/info/about" for ::1 at 2015-09-05 13:39:13 -0700
+Processing by InfoController#about as HTML
+  Rendered info/about.html.haml within layouts/application (1.3ms)
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered devise/menu/_login_items.html.haml (4.1ms)
+Completed 200 OK in 87ms (Views: 85.9ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/info/faq" for ::1 at 2015-09-05 13:39:14 -0700
+Processing by InfoController#faq as HTML
+  Rendered info/faq.html.haml within layouts/application (1.2ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered devise/menu/_login_items.html.haml (1.2ms)
+Completed 200 OK in 82ms (Views: 81.5ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/edit" for ::1 at 2015-09-05 13:39:17 -0700
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered devise/registrations/edit.html.haml within layouts/application (5.1ms)
+  Rendered devise/menu/_login_items.html.haml (0.6ms)
+Completed 200 OK in 88ms (Views: 86.7ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:39:18 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered courses/_course.html.haml (0.6ms)
+  Rendered courses/index.html.haml within layouts/application (3.2ms)
+  Rendered devise/menu/_login_items.html.haml (0.5ms)
+Completed 200 OK in 89ms (Views: 80.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:42:41 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered courses/_course.html.haml (2.2ms)
+  Rendered courses/index.html.haml within layouts/application (29.0ms)
+  Rendered devise/menu/_login_items.html.haml (2.3ms)
+Completed 200 OK in 1294ms (Views: 1236.3ms | ActiveRecord: 1.0ms)
+
+
+Started GET "/assets/helper.self-28eb2d3f8c371bd1bac40ecd747319af41c11a823a8a5fe87c35df34fdb8ad6e.css?body=1" for ::1 at 2015-09-05 13:42:43 -0700
+
+
+Started GET "/assets/main.self-e939d80c3ad2b93cf7b8c4c49e9c72168a6d602044d769097b3aa3a8b45adfa4.css?body=1" for ::1 at 2015-09-05 13:42:43 -0700
+
+
+Started GET "/users/1/courses/new" for ::1 at 2015-09-05 13:42:44 -0700
+Processing by CoursesController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered courses/_form.html.haml (18.1ms)
+  Rendered courses/new.html.haml within layouts/application (19.8ms)
+  Rendered devise/menu/_login_items.html.haml (0.7ms)
+Completed 200 OK in 106ms (Views: 96.6ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:42:51 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"htaHhRNjSLjTOTyZ5H9pcNncklVJN6Qk2Vq8hQ5WTEISiuCOccWgNunB8cINTCQ5Lw9QfBDf2XI4xWCMIyC0sg==", "course"=>{"name"=>"AP Calculus BC", "grade"=>"A-", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "courses" ("name", "grade", "level", "credit", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)[0m  [["name", "AP Calculus BC"], ["grade", "A-"], ["level", "AP"], ["credit", 1.0], ["user_id", 1], ["created_at", "2015-09-05 20:42:51.509622"], ["updated_at", "2015-09-05 20:42:51.509622"]]
+  [1m[35m (1.0ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 20ms (ActiveRecord: 1.9ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:42:51 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?  [["user_id", 1]]
+  Rendered courses/_course.html.haml (0.8ms)
+  Rendered courses/index.html.haml within layouts/application (3.4ms)
+  Rendered devise/menu/_login_items.html.haml (0.6ms)
+Completed 200 OK in 98ms (Views: 83.5ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1/courses/2/edit" for ::1 at 2015-09-05 13:42:55 -0700
+Processing by CoursesController#edit as HTML
+  Parameters: {"user_id"=>"1", "id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses" WHERE "courses"."user_id" = ? AND "courses"."id" = ? LIMIT 1[0m  [["user_id", 1], ["id", 2]]
+  Rendered courses/_form.html.haml (3.9ms)
+  Rendered courses/edit.html.haml within layouts/application (5.9ms)
+  Rendered devise/menu/_login_items.html.haml (3.1ms)
+Completed 200 OK in 93ms (Views: 86.9ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/users/1/courses/2" for ::1 at 2015-09-05 13:42:57 -0700
+Processing by CoursesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"XjNSgHSxZWmJpw80p1+AcYavMmQJ/DI+OlwOldSYd/DKbzWLFheN57Nfwm9ObM04cHzwTVAUT2jbw9Kc+e6PAA==", "course"=>{"name"=>"AP Calculus BCD", "grade"=>"A-", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1", "id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses" WHERE "courses"."user_id" = ? AND "courses"."id" = ? LIMIT 1  [["user_id", 1], ["id", 2]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  rollback transaction
+Completed 500 Internal Server Error in 13ms (ActiveRecord: 0.4ms)
+
+ActiveModel::ForbiddenAttributesError (ActiveModel::ForbiddenAttributesError):
+  app/controllers/courses_controller.rb:30:in `update'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_source.erb (3.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/diagnostics.html.erb within rescues/layout (48.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (39.8ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (88.5ms)
+
+
+Started GET "/users/1/courses/" for ::1 at 2015-09-05 13:44:41 -0700
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.5ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered courses/_course.html.haml (2.4ms)
+  Rendered courses/index.html.haml within layouts/application (24.8ms)
+  Rendered devise/menu/_login_items.html.haml (2.2ms)
+Completed 200 OK in 257ms (Views: 204.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/users/1/courses/2/edit" for ::1 at 2015-09-05 13:44:43 -0700
+Processing by CoursesController#edit as HTML
+  Parameters: {"user_id"=>"1", "id"=>"2"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses" WHERE "courses"."user_id" = ? AND "courses"."id" = ? LIMIT 1  [["user_id", 1], ["id", 2]]
+  Rendered courses/_form.html.haml (16.7ms)
+  Rendered courses/edit.html.haml within layouts/application (18.6ms)
+  Rendered devise/menu/_login_items.html.haml (4.1ms)
+Completed 200 OK in 121ms (Views: 112.5ms | ActiveRecord: 0.3ms)
+
+
+Started PATCH "/users/1/courses/2" for ::1 at 2015-09-05 13:44:45 -0700
+Processing by CoursesController#update as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"0YKS2U0VLPPG3FnWGKxNqbWlGeHVFkEjWf2fy6KYYklF3vXSL7PEffwklI3xnwDgQ3bbyIz+PHW4YkPCj+6auQ==", "course"=>{"name"=>"AP Calculus BCD", "grade"=>"A-", "level"=>"AP", "credit"=>"1.0"}, "commit"=>"Save", "user_id"=>"1", "id"=>"2"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT  "courses".* FROM "courses" WHERE "courses"."user_id" = ? AND "courses"."id" = ? LIMIT 1[0m  [["user_id", 1], ["id", 2]]
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36mSQL (0.6ms)[0m  [1mUPDATE "courses" SET "name" = ?, "updated_at" = ? WHERE "courses"."id" = ?[0m  [["name", "AP Calculus BCD"], ["updated_at", "2015-09-05 20:44:45.712816"], ["id", 2]]
+  [1m[35m (0.7ms)[0m  commit transaction
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 25ms (ActiveRecord: 1.6ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:44:45 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCourse Load (0.0ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?  [["user_id", 1]]
+  Rendered courses/_course.html.haml (0.8ms)
+  Rendered courses/index.html.haml within layouts/application (3.6ms)
+  Rendered devise/menu/_login_items.html.haml (0.8ms)
+Completed 200 OK in 126ms (Views: 115.3ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/1/courses/new" for ::1 at 2015-09-05 13:44:49 -0700
+Processing by CoursesController#new as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered courses/_form.html.haml (5.1ms)
+  Rendered courses/new.html.haml within layouts/application (7.0ms)
+  Rendered devise/menu/_login_items.html.haml (0.4ms)
+Completed 200 OK in 101ms (Views: 91.3ms | ActiveRecord: 0.2ms)
+
+
+Started POST "/users/1/courses" for ::1 at 2015-09-05 13:44:57 -0700
+Processing by CoursesController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"WqdCzCX01JFRHOVoRQTjJbMamLeL1SRluSlGezPcroXO+yXHR1I8H2vkKDOsN65sRclantI9WTNYtppyHqpWdQ==", "course"=>{"name"=>"PE", "grade"=>"A+", "level"=>"L2", "credit"=>"0.375"}, "commit"=>"Save", "user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "courses" ("name", "grade", "level", "credit", "user_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?, ?)  [["name", "PE"], ["grade", "A+"], ["level", "L2"], ["credit", 0.375], ["user_id", 1], ["created_at", "2015-09-05 20:44:57.466381"], ["updated_at", "2015-09-05 20:44:57.466381"]]
+  [1m[36m (2.2ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 18ms (ActiveRecord: 2.8ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:44:57 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered courses/_course.html.haml (1.0ms)
+  Rendered courses/index.html.haml within layouts/application (3.2ms)
+  Rendered devise/menu/_login_items.html.haml (0.6ms)
+Completed 200 OK in 83ms (Views: 77.2ms | ActiveRecord: 0.3ms)
+
+
+Started DELETE "/users/1/courses/3" for ::1 at 2015-09-05 13:44:59 -0700
+Processing by CoursesController#destroy as HTML
+  Parameters: {"authenticity_token"=>"EG8T9iVLKjxJEz/bszoWcDnaT/D+J7aqZM2BQ11n5eOEM3T9R+3CsnPr8oBaCVs5zwmN2afPy/yFUl1KcBEdEw==", "user_id"=>"1", "id"=>"3"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT  "courses".* FROM "courses" WHERE "courses"."user_id" = ? AND "courses"."id" = ? LIMIT 1  [["user_id", 1], ["id", 3]]
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.3ms)[0m  DELETE FROM "courses" WHERE "courses"."id" = ?  [["id", 3]]
+  [1m[36m (2.3ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 17ms (ActiveRecord: 2.9ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:44:59 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.1ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered courses/_course.html.haml (0.8ms)
+  Rendered courses/index.html.haml within layouts/application (3.4ms)
+  Rendered devise/menu/_login_items.html.haml (0.6ms)
+Completed 200 OK in 91ms (Views: 84.9ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/edit" for ::1 at 2015-09-05 13:45:03 -0700
+Processing by Devise::RegistrationsController#edit as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered devise/registrations/edit.html.haml within layouts/application (5.8ms)
+  Rendered devise/menu/_login_items.html.haml (0.4ms)
+Completed 200 OK in 81ms (Views: 79.2ms | ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:45:08 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?  [["user_id", 1]]
+  Rendered courses/_course.html.haml (0.7ms)
+  Rendered courses/index.html.haml within layouts/application (2.8ms)
+  Rendered devise/menu/_login_items.html.haml (0.4ms)
+Completed 200 OK in 83ms (Views: 76.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users/sign_out" for ::1 at 2015-09-05 13:45:09 -0700
+
+ActionController::RoutingError (uninitialized constant UsersController):
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:72:in `controller_reference'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:62:in `controller'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:41:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.6ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (2.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.6ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (72.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (39.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (87.8ms)
+
+
+Started GET "/users/sign_out" for ::1 at 2015-09-05 13:45:09 -0700
+
+ActionController::RoutingError (uninitialized constant UsersController):
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:72:in `controller_reference'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:62:in `controller'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:41:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (6.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.5ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (1.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (68.1ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.5ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (36.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (80.2ms)
+
+
+Started GET "/users/sign_out" for ::1 at 2015-09-05 13:50:41 -0700
+
+ActionController::RoutingError (uninitialized constant UsersController):
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:261:in `const_get'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:261:in `block in constantize'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `each'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `inject'
+  activesupport (4.2.4) lib/active_support/inflector/methods.rb:259:in `constantize'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:72:in `controller_reference'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:62:in `controller'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:41:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:43:in `block in serve'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `each'
+  actionpack (4.2.4) lib/action_dispatch/journey/router.rb:30:in `serve'
+  actionpack (4.2.4) lib/action_dispatch/routing/route_set.rb:821:in `call'
+  warden (1.2.3) lib/warden/manager.rb:35:in `block in call'
+  warden (1.2.3) lib/warden/manager.rb:34:in `catch'
+  warden (1.2.3) lib/warden/manager.rb:34:in `call'
+  rack (1.6.4) lib/rack/etag.rb:24:in `call'
+  rack (1.6.4) lib/rack/conditionalget.rb:25:in `call'
+  rack (1.6.4) lib/rack/head.rb:13:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/params_parser.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/flash.rb:260:in `call'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:225:in `context'
+  rack (1.6.4) lib/rack/session/abstract/id.rb:220:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/cookies.rb:560:in `call'
+  activerecord (4.2.4) lib/active_record/query_cache.rb:36:in `call'
+  activerecord (4.2.4) lib/active_record/connection_adapters/abstract/connection_pool.rb:653:in `call'
+  activerecord (4.2.4) lib/active_record/migration.rb:377:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:29:in `block in call'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:88:in `__run_callbacks__'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:778:in `_run_call_callbacks'
+  activesupport (4.2.4) lib/active_support/callbacks.rb:81:in `run_callbacks'
+  actionpack (4.2.4) lib/action_dispatch/middleware/callbacks.rb:27:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/reloader.rb:73:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/remote_ip.rb:78:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/debug_exceptions.rb:17:in `call'
+  web-console (2.2.1) lib/web_console/middleware.rb:39:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/show_exceptions.rb:30:in `call'
+  railties (4.2.4) lib/rails/rack/logger.rb:38:in `call_app'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `block in call'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `block in tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:26:in `tagged'
+  activesupport (4.2.4) lib/active_support/tagged_logging.rb:68:in `tagged'
+  railties (4.2.4) lib/rails/rack/logger.rb:20:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/request_id.rb:21:in `call'
+  rack (1.6.4) lib/rack/methodoverride.rb:22:in `call'
+  rack (1.6.4) lib/rack/runtime.rb:18:in `call'
+  activesupport (4.2.4) lib/active_support/cache/strategy/local_cache_middleware.rb:28:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  actionpack (4.2.4) lib/action_dispatch/middleware/static.rb:116:in `call'
+  rack (1.6.4) lib/rack/sendfile.rb:113:in `call'
+  railties (4.2.4) lib/rails/engine.rb:518:in `call'
+  railties (4.2.4) lib/rails/application.rb:165:in `call'
+  rack (1.6.4) lib/rack/lock.rb:17:in `call'
+  rack (1.6.4) lib/rack/content_length.rb:15:in `call'
+  rack (1.6.4) lib/rack/handler/webrick.rb:88:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:138:in `service'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/httpserver.rb:94:in `run'
+  /Users/rossfoley/.rvm/rubies/ruby-2.2.2/lib/ruby/2.2.0/webrick/server.rb:294:in `block in start_thread'
+
+
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (1.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_route.html.erb (1.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/routes/_table.html.erb (1.0ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.9ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/actionpack-4.2.4/lib/action_dispatch/middleware/templates/rescues/routing_error.html.erb within rescues/layout (59.7ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_markup.html.erb (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.3ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/console.js.erb within layouts/javascript (33.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/main.js.erb within layouts/javascript (0.2ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /Users/rossfoley/.rvm/gems/ruby-2.2.2/gems/web-console-2.2.1/lib/web_console/templates/index.html.erb (74.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-05 13:50:45 -0700
+Processing by HomeController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 2ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:50:45 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mCourse Exists (0.1ms)[0m  SELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1  [["user_id", 1]]
+  [1m[36mCourse Load (0.0ms)[0m  [1mSELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?[0m  [["user_id", 1]]
+  Rendered courses/_course.html.haml (0.8ms)
+  Rendered courses/index.html.haml within layouts/application (3.3ms)
+  Rendered devise/menu/_login_items.html.haml (0.5ms)
+Completed 200 OK in 90ms (Views: 83.8ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/" for ::1 at 2015-09-05 13:50:49 -0700
+Processing by HomeController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/users/1/courses
+Completed 302 Found in 1ms (ActiveRecord: 0.1ms)
+
+
+Started GET "/users/1/courses" for ::1 at 2015-09-05 13:50:49 -0700
+Processing by CoursesController#index as HTML
+  Parameters: {"user_id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mCourse Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "courses" WHERE "courses"."user_id" = ? LIMIT 1[0m  [["user_id", 1]]
+  [1m[35mCourse Load (0.1ms)[0m  SELECT "courses".* FROM "courses" WHERE "courses"."user_id" = ?  [["user_id", 1]]
+  Rendered courses/_course.html.haml (0.7ms)
+  Rendered courses/index.html.haml within layouts/application (3.0ms)
+  Rendered devise/menu/_login_items.html.haml (0.5ms)
+Completed 200 OK in 76ms (Views: 69.6ms | ActiveRecord: 0.2ms)

@@ -5,8 +5,8 @@
     %title 
       = h(yield(:title) || "GPA Calculator")
     = csrf_meta_tag
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application"
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     %meta{name: "viewport", content: "width=devise-width, initial-scale=1.0"}
   %body{:class => page_class}
     %header
@@ -18,4 +18,4 @@
         = content_tag :div, msg, :id => "flash_#{name}", :class => "flash alert #{alert_class(name)}"
       = yield
       %hr
-      %footer Copyright &copy; 2012 Ross Foley.  All Rights Reserved.
+      %footer Copyright &copy; 2015 Ross Foley.  All Rights Reserved.
